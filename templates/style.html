@@ -1,0 +1,290 @@
+{% block style %}
+{% load static %}
+<!--/*FONTS INCLUDING*/-->
+<!--/*"MarckScriptRegular"*/-->
+@font-face {
+    font-family: "MarckScriptRegular";
+    src: url("{% static "fonts/MarckScriptRegular/MarckScriptRegular.eot" %}");
+    src: url("{% static "fonts/MarckScriptRegular/MarckScriptRegular.eot?#iefix" %}")format("embedded-opentype"),
+         url("{% static "fonts/MarckScriptRegular/MarckScriptRegular.woff" %}") format("woff"),
+         url("{% static "fonts/MarckScriptRegular/MarckScriptRegular.ttf" %}") format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}
+<!--/*"ZopaRegular"*/-->
+@font-face {
+    font-family: "ZopaRegular";
+    src: url("{% static "fonts/ZopaRegular.ZopaRegular.eot" %}");
+    src: url("{% static "fonts/ZopaRegular.ZopaRegular.eot?#iefix" %}")format("embedded-opentype"),
+         url("{% static "fonts/ZopaRegular/ZopaRegular.woff "%}") format("woff"),
+         url("{% static "fonts/ZopaRegular/ZopaRegular.ttf" %}") format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}
+<!--/*"LobsterRegular"*/-->
+@font-face {
+    font-family: "LobsterRegular";
+    src: url("{% static "fonts/LobsterRegular/LobsterRegular.eot" %}");
+    src: url("{% static "fonts/LobsterRegular/LobsterRegular.eot?#iefix" %}")format("embedded-opentype"),
+         url("{% static "fonts/LobsterRegular/LobsterRegular.woff" %}") format("woff"),
+         url("{% static "fonts/LobsterRegular/LobsterRegular.ttf" %}") format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}
+<!--/*"TypewriterRegular"*/-->
+@font-face {
+    font-family: "TypewriterRegular";
+    src: url("{% static "fonts/TypewriterRegular/TypewriterRegular.eot" %}");
+    src: url("{% static "fonts/TypewriterRegular/TypewriterRegular.eot?#iefix" %}")format("embedded-opentype"),
+         url("{% static "fonts/TypewriterRegular/TypewriterRegular.woff" %}") format("woff"),
+         url("{% static "fonts/TypewriterRegular/TypewriterRegular.ttf" %}") format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}
+<!--/*Lighthaus*/--> 
+@font-face {
+    font-family: 'Lighthaus';
+    src: url('{% static "fonts/Lighthaus/Lighthaus.eot" %}');
+    src: url("{% static "fonts/Lighthaus/Lighthaus.eot?#iefix" %}")format('embedded-opentype'),
+         url('{% static "fonts/Lighthaus/Lighthaus.woff" %}') format('woff'),
+         url('{% static "fonts/Lighthaus/Lighthaus.ttf" %}') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+<!--/*Philosopher*/-->
+@font-face {
+    font-family: 'Philosopher';
+    src: url('{% static "fonts/Philosopher/Philosopher-Bold.eot" %}');
+    src: url('{% static "fonts/Philosopher/Philosopher-Bold.eot?#iefix" %}')format('embedded-opentype'),
+         url('{% static "fonts/Philosopher/Philosopher-Bold.woff" %}') format('woff'),
+         url('{% static "fonts/Philosopher/Philosopher-Bold.ttf" %}') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Philosopher';
+    src: url('{% static "fonts/Philosopher/Philosopher-BoldItalic.eot" %}');
+    src: url('{% static "fonts/Philosopher/Philosopher-BoldItalic.eot?#iefix" %}')format('embedded-opentype'),
+         url('{% static "fonts/Philosopher/Philosopher-BoldItalic.woff" %}') format('woff'),
+         url('{% static "fonts/Philosopher/Philosopher-BoldItalic.ttf" %}') format('truetype');
+    font-weight: bold;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'Philosopher';
+    src: url('{% static "fonts/Philosopher/Philosopher.eot" %}');
+    src: url('{% static "fonts/Philosopher/Philosopher.eot?#iefix" %}')format('embedded-opentype'),
+         url('{% static "fonts/Philosopher/Philosopher.woff" %}') format('woff'),
+         url('{% static "fonts/Philosopher/Philosopher.ttf" %}') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Philosopher';
+    src: url('{% static "fonts/Philosopher/Philosopher-Italic.eot" %}');
+    src: url('{% static "fonts/Philosopher/Philosopher-Italic.eot?#iefix" %}')format('embedded-opentype'),
+         url('{% static "fonts/Philosopher/Philosopher-Italic.woff" %}') format('woff'),
+         url('{% static "fonts/Philosopher/Philosopher-Italic.ttf" %}') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+}
+
+
+<!--/* HEADERS */-->
+/* PAGE HEADER */
+.pageHeader {
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    border-bottom-left-radius: 0px; 
+    border-bottom-right-radius: 0px;
+    margin-top: 25px;
+    padding: 25px;
+}
+.projectTitle {
+    font-family: LobsterRegular;    
+    text-align: center;
+    color: rgb(102,0,0);
+}
+.explain {
+    font-family: MarckScriptRegular;
+    text-align: right;
+    color: rgb(0,0,80);
+}
+/* MAINPAGE HEADER */
+.mainpageHeader {
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    background-color: rgba(255,255,255,0.3);
+    margin-top: 25px;
+    padding: 25px;
+}
+
+
+<!--/* PAGE BACKGROUND IMAGES */-->
+/* PROJECT PAGE BACKGROUND IMAGES */
+.mainpageBackground {
+    background-image: url({% static 'images/vinyl.jpg' %}); 
+}
+
+
+<!--/* NAVBAR */-->
+/*изменение значений свойств по умолчанию для навигационной панели*/
+.navbar {
+    position: relative;
+    min-height: 50px;
+    margin-bottom: 0px;
+    border: 1px solid transparent;
+}
+.navbar-default {
+    background-color: rgba(0,91,62,0.75);
+    border-color: #080808;
+}
+/* цвет текста, содержащий название сайта или бренда */
+.navbar-default .navbar-brand {
+    color: #d1ffed;
+}
+/* цвет текста (название сайта или бренда), при поднесении к нему курсора мышки или при его нахождении в фокусе */
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:focus {
+    color: #ffffff;
+}
+/* Цвет пунктов навигационного меню */
+.navbar-default .navbar-nav > li > a {
+    color: #d1ffed;
+}
+/* Цвет пункта меню, при поднесении к нему курсора мышки или при его нахождении в фокусе */
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+    color: #ffffff;
+}
+/* Цвет и фон активного пункта меню, а также поднесении к нему курсора мышки или при его нахождении в фокусе */
+.navbar-default .navbar-nav > .active > a, 
+.navbar-default .navbar-nav > .active > a:hover, 
+.navbar-default .navbar-nav > .active > a:focus {
+    color: #ffffff;
+    background-color: rgba(0,91,62,1);
+}
+/* Цвет и фон открытого пункта меню, а также поднесении к нему курсора мышки или при его нахождении в фокусе */
+.navbar-default .navbar-nav > .open > a, 
+.navbar-default .navbar-nav > .open > a:hover, 
+.navbar-default .navbar-nav > .open > a:focus {
+    color: #ffffff;
+    background-color: rgba(18,154,106,0.5);
+}
+/* Цвет стрелочки (треугольничка) у раскрывающихся пунктов меню */
+.navbar-default .navbar-nav > .dropdown > a .caret {
+    border-top-color: #d1ffed;
+    border-bottom-color: #d1ffed;
+}
+/* Цвет стрелочки (треугольничка) при поднесении к нему курсора мышки или при его нахождении в фокусе */
+.navbar-default .navbar-nav > .dropdown > a:hover .caret,
+.navbar-default .navbar-nav > .dropdown > a:focus .caret {
+    border-top-color: #ffffff;
+    border-bottom-color: #ffffff;
+}
+/* Цвет стрелочки (треугольничка), открывшегося пункта меню */
+.navbar-default .navbar-nav > .open > a .caret, 
+.navbar-default .navbar-nav > .open > a:hover .caret, 
+.navbar-default .navbar-nav > .open > a:focus .caret {
+    border-top-color: #ffffff;
+    border-bottom-color: #ffffff;
+}
+/* CSS стили для мобильных устройств */
+/* Цвет рамки у кнопки, которая открывает меню */
+.navbar-default .navbar-toggle {
+    border-color: #d1ffed;
+}
+/* Цвет фона кнопки (которая открывает меню) при поднесении к ней курсора мышки или при нахождении её в фокусе */
+.navbar-default .navbar-toggle:hover,
+.navbar-default .navbar-toggle:focus {
+    background-color: rgba(0,91,62,1);
+}
+/* Цвет полосочек в кнопочке, которая открывает меню */
+.navbar-default .navbar-toggle .icon-bar {
+    background-color: #d1ffed;
+}
+/* Цвет пунктов меню в раскрывающихся списках */
+@media (max-width: 767px) {
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+        color: #d1ffed;
+    }
+}
+@media (max-width: 767px) {    
+/* Цвет и фон пункта меню в раскрывающихся списках, при поднесении к нему курсора мышки или при нахождении его в фокусе */
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+    color: #ffffff;
+    background-color: rgba(0,91,62,10);
+  }
+}
+
+
+<!--/* CONTENT FIELD */-->
+.contentField {
+    padding: 25px;
+    background-color: rgba(255,255,255,0.8);
+}
+.noContent {
+    text-align: center;
+    color: red;
+}
+.myLink {
+    text-align: center;
+}
+.programmName {
+    font-family: Lighthaus;
+    text-align: center;
+}
+.programmInfo {
+    font-family: Philosopher;
+    text-align: center;
+    font-style: italic;
+}
+.contactType {
+    font-family: TypewriterRegular;
+}
+.contactValue {
+    font-family: Philisopher;
+    text-align: center;
+    font-style: italic;
+}
+.pageName {
+    font-family: Lighthaus;
+    text-align: center;
+    padding-bottom: 20px;
+}
+.accountLogin {
+    font-style: italic;
+    text-decoration: underline;
+}
+.accountPassword {
+    text-align: center;
+}
+.achievement {
+    font-family: Philisopher;
+    font-style: italic;
+}
+
+
+<!--/* FOOTER */-->
+.projectFooter {
+    background: rgba(0,91,62,0.75);
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    color: white;
+    margin-bottom: 25px;
+    padding: 5px;
+    text-align: center;
+}
+.currentLocationAndYear {
+    font-family: TypewriterRegular;
+}
+.footerLetters {
+    font-family: ZopaRegular;
+}
+<!--/* !!! STYLE VERSION (29.10.2018) !!! */-->
+{% endblock %}

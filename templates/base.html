@@ -1,0 +1,27 @@
+{% load staticfiles %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}">
+    <title>
+      {% block title %}EMPTY_PAGE{% endblock %}
+    </title>
+  </head>
+  <style>{% include 'style.html' %}</style>
+  <body class="mainpageBackground">
+    {% include 'header.html' %}
+    {% include 'navbar.html' %}
+    {% block content %}
+    <div class="container"><div class="contentField"><div class="noContent"><h4>NO_CONTENT!</h4></div></div></div>
+    {% endblock %}
+    {% include 'footer.html' %}
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="{% static 'js/bootstrap.js' %}"></script>
+  </body>
+</html>
