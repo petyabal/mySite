@@ -1,7 +1,9 @@
 {% block style %}
 {% load static %}
-<!--/*FONTS INCLUDING*/-->
-<!--/*"MarckScriptRegular"*/-->
+
+
+<!--/* FONTS INCLUDING */-->
+<!--/* "MarckScriptRegular" */-->
 @font-face {
     font-family: "MarckScriptRegular";
     src: url("{% static "fonts/MarckScriptRegular/MarckScriptRegular.eot" %}");
@@ -11,7 +13,7 @@
     font-style: normal;
     font-weight: normal;
 }
-<!--/*"ZopaRegular"*/-->
+<!--/* "ZopaRegular" */-->
 @font-face {
     font-family: "ZopaRegular";
     src: url("{% static "fonts/ZopaRegular.ZopaRegular.eot" %}");
@@ -21,7 +23,7 @@
     font-style: normal;
     font-weight: normal;
 }
-<!--/*"LobsterRegular"*/-->
+<!--/* "LobsterRegular" */-->
 @font-face {
     font-family: "LobsterRegular";
     src: url("{% static "fonts/LobsterRegular/LobsterRegular.eot" %}");
@@ -31,7 +33,7 @@
     font-style: normal;
     font-weight: normal;
 }
-<!--/*"TypewriterRegular"*/-->
+<!--/* "TypewriterRegular" */-->
 @font-face {
     font-family: "TypewriterRegular";
     src: url("{% static "fonts/TypewriterRegular/TypewriterRegular.eot" %}");
@@ -41,7 +43,7 @@
     font-style: normal;
     font-weight: normal;
 }
-<!--/*Lighthaus*/--> 
+<!--/* "Lighthaus" */--> 
 @font-face {
     font-family: 'Lighthaus';
     src: url('{% static "fonts/Lighthaus/Lighthaus.eot" %}');
@@ -51,7 +53,7 @@
     font-weight: normal;
     font-style: normal;
 }
-<!--/*Philosopher*/-->
+<!--/* "Philosopher" */-->
 @font-face {
     font-family: 'Philosopher';
     src: url('{% static "fonts/Philosopher/Philosopher-Bold.eot" %}');
@@ -123,14 +125,14 @@
 
 
 <!--/* PAGE BACKGROUND IMAGES */-->
-/* PROJECT PAGE BACKGROUND IMAGES */
+<!--/* PROJECT PAGE BACKGROUND IMAGES */-->
 .mainpageBackground {
     background-image: url({% static 'images/vinyl.jpg' %}); 
 }
 
 
 <!--/* NAVBAR */-->
-/*изменение значений свойств по умолчанию для навигационной панели*/
+<!--/* изменение значений свойств по умолчанию для навигационной панели */-->
 .navbar {
     position: relative;
     min-height: 50px;
@@ -141,78 +143,78 @@
     background-color: rgba(0,91,62,0.75);
     border-color: #080808;
 }
-/* цвет текста, содержащий название сайта или бренда */
+<!--/* цвет текста, содержащий название сайта или бренда */-->
 .navbar-default .navbar-brand {
     color: #d1ffed;
 }
-/* цвет текста (название сайта или бренда), при поднесении к нему курсора мышки или при его нахождении в фокусе */
+<!--/* цвет текста (название сайта или бренда), при поднесении к нему курсора мышки или при его нахождении в фокусе */-->
 .navbar-default .navbar-brand:hover,
 .navbar-default .navbar-brand:focus {
     color: #ffffff;
 }
-/* Цвет пунктов навигационного меню */
+<!--/* Цвет пунктов навигационного меню */-->
 .navbar-default .navbar-nav > li > a {
     color: #d1ffed;
 }
-/* Цвет пункта меню, при поднесении к нему курсора мышки или при его нахождении в фокусе */
+<!--/* Цвет пункта меню, при поднесении к нему курсора мышки или при его нахождении в фокусе */-->
 .navbar-default .navbar-nav > li > a:hover,
 .navbar-default .navbar-nav > li > a:focus {
     color: #ffffff;
 }
-/* Цвет и фон активного пункта меню, а также поднесении к нему курсора мышки или при его нахождении в фокусе */
+<!--/* Цвет и фон активного пункта меню, а также поднесении к нему курсора мышки или при его нахождении в фокусе */-->
 .navbar-default .navbar-nav > .active > a, 
 .navbar-default .navbar-nav > .active > a:hover, 
 .navbar-default .navbar-nav > .active > a:focus {
     color: #ffffff;
     background-color: rgba(0,91,62,1);
 }
-/* Цвет и фон открытого пункта меню, а также поднесении к нему курсора мышки или при его нахождении в фокусе */
+<!--/* Цвет и фон открытого пункта меню, а также поднесении к нему курсора мышки или при его нахождении в фокусе */-->
 .navbar-default .navbar-nav > .open > a, 
 .navbar-default .navbar-nav > .open > a:hover, 
 .navbar-default .navbar-nav > .open > a:focus {
     color: #ffffff;
     background-color: rgba(18,154,106,0.5);
 }
-/* Цвет стрелочки (треугольничка) у раскрывающихся пунктов меню */
+<!--/* Цвет стрелочки (треугольничка) у раскрывающихся пунктов меню */-->
 .navbar-default .navbar-nav > .dropdown > a .caret {
     border-top-color: #d1ffed;
     border-bottom-color: #d1ffed;
 }
-/* Цвет стрелочки (треугольничка) при поднесении к нему курсора мышки или при его нахождении в фокусе */
+<!--/* Цвет стрелочки (треугольничка) при поднесении к нему курсора мышки или при его нахождении в фокусе */-->
 .navbar-default .navbar-nav > .dropdown > a:hover .caret,
 .navbar-default .navbar-nav > .dropdown > a:focus .caret {
     border-top-color: #ffffff;
     border-bottom-color: #ffffff;
 }
-/* Цвет стрелочки (треугольничка), открывшегося пункта меню */
+<!--/* Цвет стрелочки (треугольничка), открывшегося пункта меню */-->
 .navbar-default .navbar-nav > .open > a .caret, 
 .navbar-default .navbar-nav > .open > a:hover .caret, 
 .navbar-default .navbar-nav > .open > a:focus .caret {
     border-top-color: #ffffff;
     border-bottom-color: #ffffff;
 }
-/* CSS стили для мобильных устройств */
-/* Цвет рамки у кнопки, которая открывает меню */
+<!--/* CSS стили для мобильных устройств */-->
+<!--/* Цвет рамки у кнопки, которая открывает меню */-->
 .navbar-default .navbar-toggle {
     border-color: #d1ffed;
 }
-/* Цвет фона кнопки (которая открывает меню) при поднесении к ней курсора мышки или при нахождении её в фокусе */
+<!--/* Цвет фона кнопки (которая открывает меню) при поднесении к ней курсора мышки или при нахождении её в фокусе */-->
 .navbar-default .navbar-toggle:hover,
 .navbar-default .navbar-toggle:focus {
     background-color: rgba(0,91,62,1);
 }
-/* Цвет полосочек в кнопочке, которая открывает меню */
+<!--/* Цвет полосочек в кнопочке, которая открывает меню */-->
 .navbar-default .navbar-toggle .icon-bar {
     background-color: #d1ffed;
 }
-/* Цвет пунктов меню в раскрывающихся списках */
+<!--/* Цвет пунктов меню в раскрывающихся списках */-->
 @media (max-width: 767px) {
   .navbar-default .navbar-nav .open .dropdown-menu > li > a {
         color: #d1ffed;
     }
 }
+<!--/* Цвет и фон пункта меню в раскрывающихся списках, при поднесении к нему курсора мышки или при нахождении его в фокусе */-->
 @media (max-width: 767px) {    
-/* Цвет и фон пункта меню в раскрывающихся списках, при поднесении к нему курсора мышки или при нахождении его в фокусе */
   .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
   .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
     color: #ffffff;
@@ -222,14 +224,17 @@
 
 
 <!--/* CONTENT FIELD */-->
+<!--/* Белый блок с контентом внутри контейнера */-->
 .contentField {
     padding: 25px;
     background-color: rgba(255,255,255,0.8);
 }
+<!--/* блок контента по умолчанию для пустой страницы */-->
 .noContent {
     text-align: center;
     color: red;
 }
+<!--/* блок для фильтра статей по дате */-->
 .articlesFilter {
     font-family: ZopaRegular;
     text-align: center;
@@ -237,38 +242,45 @@
     border-radius: 10px;
     margin-bottom: 25px
 }
+<!--/* блок для отображения сведений о статье в списке статей */-->
 .articleInfo {
     text-align: right;    
 }
+<!--/* Стиль загаловка статьи в списке статей */-->
 .articleTitle {
     font-family: TypewriterRegular;
     text-align: center;
-    color: black !important;
 }
+<!--/* Стиль для изображений в списке статей */-->
 .articleImage {
     max-width: 80%;
     height: auto;
     border-radius: 6px;    
 }
+<!--/* Стиль для краткого изложения текста статьи в списке статей */-->
 .articlePreview {
     font-family: Philosopher;
     font-size: 20px;
     text-align: center;
 }
+<!--/* Стиль текста статьи */-->
 .articleText {
     font-family: Philosopher;
     font-size: 20px;
 }
+<!--/* Блок для формы отправки комментария */-->
 .comment-formField {
     background-color: rgba(127,127,127,0.5);
     border-radius: 10px;
     padding: 25px;
     text-align: center;
 }
+<!--/* Стиль надписи о порядке работы с комментариями */-->
 .commentNote {
     font-family: ZopaRegular;
     font-size: 20px;
 }
+<!--/* Стиль надписи "Комментарии" */-->
 .comments {
     font-family: Philosopher;
     text-align: center;
