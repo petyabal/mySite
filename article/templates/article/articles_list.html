@@ -1,0 +1,28 @@
+{% extends 'article/article_base.html' %}
+{% block title %}Список новостей{% endblock title %}
+{% block content %}
+<div class="container">
+  <div class="contentField">
+  	<div class="pageName"><h2>Новости сайта:</h2></div>
+  	<div class="articlesFilter">
+  	  Фильтр новостей: 
+	  <a href="{% url 'articles_filter'  pk=1 %}"><button>День</button></a>
+	  <a href="{% url 'articles_filter'  pk=2 %}"><button>Неделя</button></a>
+	  <a href="{% url 'articles_filter'  pk=3 %}"><button>Месяц</button></a>
+	  <a href="{% url 'articles_filter'  pk=4 %}"><button>Все</button></a>
+	</div>
+	<hr>
+	{% for article in articles %}
+	  <div class="articleInfo">{{ article.article_created }}</div><br>
+	  <div class="articleTitle"><h2>
+		<a href="{% url 'selected_article' pk=article.id %}">{{ article.article_title }}</a>
+	  </h2></div><br>
+	  {% if article.article_image %}
+	   	<img src="{{MEDIA_URL}}{{article.article_image.url}}" class="img-responsive center-block articleImage"><br><!--style="width: 300px; height: 300px;"-->
+	  {% endif %}
+	  <div class="articlePreview">{{ article.article_submission|safe }}</div><hr>
+	{% endfor %}
+  </div>
+</div>
+{% endblock content %}
+</div>

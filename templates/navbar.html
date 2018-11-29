@@ -10,6 +10,8 @@
 {% url 'vacation_schedule' as vacations %}
 {% url 'contacts' as contacts %}
 {% url 'achievements' as achievements %}
+{% url 'articles_list' as articles %}
+{% url 'logout' as exit %}
 
 <div class="container">
   <nav class="navbar navbar-default">
@@ -41,10 +43,23 @@
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-left">
+        <li><a href="{{ articles }}">Новости сайта</a></li>
         <li><a href="{{ achievements }}">Достижения</a></li>
+        <li><a href="{{ contacts }}">Контакты</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="{{ contacts }}">Контакты</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{% if user.is_active %}{{ user.username }}{% else %}Авторизация/Регистрация{% endif %}<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            {% if user.is_active %}
+              <li><a href="{{ exit }}">Выход</a></li>
+            {% else %}
+            <li><a href="#">Авторизация</a></li>
+            <li><a href="#">Регистрация</a></li>
+            {% endif %}
+          </ul>
+        </li>
+        <!--<button type="button" class="btn btn-default navbar-btn"></button>-->
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->

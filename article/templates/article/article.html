@@ -1,0 +1,58 @@
+{% extends 'article/article_base.html' %}
+
+{% block description %}
+{{ article.article_description }}
+{% endblock description %}
+
+{% block keywords %}
+{{article.article_keywords}}
+{% endblock keywords %}
+
+{% block title %}
+{{ article.article_title }}
+{% endblock title %}
+
+{% block content %}
+  <div class="container">
+  	<div class="contentField">
+	  <div class="pageName"><h2>Новости:
+		{{ article.article_title }}
+	  </h2></div><br>
+	  <p><i>Создано: </i><b>{{ article.article_created }}</b></p>
+	  <p><i>Обновлено: </i><b>{{ article.article_updated }}</b></p>
+	  <p><i>Автор: </i><b>{{ article.article_written_by }}</b></p>
+	  <p><i>Категория: </i><b>{{ article.article_category }}</b></p>
+	  <p><i>Теги:</i><br> 
+		{% for tag in article.article_tags.all %}
+		  <b>{{ tag.tag_title }}</b><br>
+		{% endfor %}</p><br>
+	  {% if article.article_image %}
+	    <p><img src="{{article.article_image.url}}" class="img-responsive center-block"></p><br>
+	  {% else %}
+		<p></p>
+	  {% endif %}
+	  <div class="articleText"><p>{{ article.article_text|safe }}</p></div><br>
+	  <p>Статью оценило {{ article.article_reputation }} человек</p><hr>
+	  <div class="comment-formField">
+		{% if user.is_active %}
+		  <div class="commentNote">Вы можете оставить свой комментарий, он отобразится на сайте после прохождения модерации.</div>
+		  <p>
+	  		<form action="" method="post">  	
+	    	  {% csrf_token %}
+	    	  {{ form.as_p }}
+	          <input type="submit" value="Отправить">
+	  	 	</form>
+		  </p>
+		{% else %}
+		  <div class="commentNote">Чтобы оставить комментарии авторизуйтесь на сайте.</div>
+		{% endif %}
+	  </div><hr>
+	  <div class="comments"><h3>Комментарии:</h3></div>
+	  {% for comment in comments %}
+		<p><b>{{ comment.comment_written_by }}:<br></b>
+		{{ comment.comment_text }}<br>
+		<i>{{ comment.comment_created }}</i><br></p>
+	  {% endfor %}
+	</div>
+  </div>
+{% endblock content %}
