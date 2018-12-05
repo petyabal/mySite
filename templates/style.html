@@ -93,7 +93,7 @@
 
 
 <!--/* HEADERS */-->
-/* PAGE HEADER */
+<!--/* PAGE HEADER */-->
 .pageHeader {
     border-top-left-radius: 6px;
     border-top-right-radius: 6px;
@@ -112,7 +112,7 @@
     text-align: right;
     color: rgb(0,0,80);
 }
-/* MAINPAGE HEADER */
+<!--/* MAINPAGE HEADER */-->
 .mainpageHeader {
     border-top-left-radius: 6px;
     border-top-right-radius: 6px;
@@ -269,21 +269,31 @@
     font-size: 20px;
 }
 <!--/* Блок для формы отправки комментария */-->
-.comment-formField {
+.formField {
     background-color: rgba(127,127,127,0.5);
     border-radius: 10px;
     padding: 25px;
     text-align: center;
 }
 <!--/* Стиль надписи о порядке работы с комментариями */-->
-.commentNote {
+.note {
     font-family: ZopaRegular;
     font-size: 20px;
+    margin-bottom: 20px;
+}
+.loginNote {
+    font-family: ZopaRegular;
+    font-size: 20px;
+    color: #ffffff
 }
 <!--/* Стиль надписи "Комментарии" */-->
 .comments {
     font-family: Philosopher;
     text-align: center;
+}
+<!--/* Стиль для отображения комментариев пользователя, не прошедших модерацию */-->
+.unmoderated {
+    color: gray;
 }
 .myLink {
     text-align: center;
@@ -341,5 +351,5 @@
 .footerLetters {
     font-family: ZopaRegular;
 }
-<!--/* !!! STYLE VERSION (28.11.2018) !!! */-->
+<!--/* !!! STYLE VERSION (30.11.2018) !!! */-->
 {% endblock %}

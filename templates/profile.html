@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}Профиль пользователя{% endblock %}
+{% block content %}
+  <div class="container">
+  	<div class="contentField">
+  	  <div class="pageName"><h2>Профиль пользователя {{ user.username }}</h2></div>
+	  <div class="formField">
+	  	<form action="" method="post">  	
+	      {% csrf_token %}
+	      {{ form.as_p }}
+	      <input type="submit" class="btn btn-default" value="Сохранить данные">
+	    </form>
+	  </div>
+	  <p>Логин: {{ user.username }}</p>
+	  	<p>Имя: {{ user.first_name }}{% if not user.first_name %}не указано{% endif %}</p>
+	  	<p>Фамилия: {{ user.last_name }}{% if not user.last_name %}не указана{% endif %}</p>
+	  	<p>Адрес эл. почты: {{ user.email }}{% if not user.email %}не указан{% endif %}</p> 
+	</div>
+  </div>
+{% endblock %}

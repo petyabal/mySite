@@ -61,13 +61,13 @@ class Comment(models.Model): #класс комментария
 		db_table = 'Comment'
 		verbose_name = 'Комментарий'
 		verbose_name_plural = 'Комментарии'
-		ordering = ['comment_created']
+		ordering = ['-comment_created']
 		
 	comment_written_by = models.ForeignKey(User, 
 		on_delete=models.CASCADE, verbose_name='Автор')
 	comment_article = models.ForeignKey(Article, 
 		on_delete=models.CASCADE, verbose_name='Статья')
-	comment_text = models.TextField('Текст комментария') #-
+	comment_text = models.TextField('Текст комментария')
 	comment_created = models.DateTimeField('Добавлен', auto_now_add=True)
 	comment_moderation = models.BooleanField('Модерация', default=False)
 

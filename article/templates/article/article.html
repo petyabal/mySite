@@ -33,25 +33,32 @@
 	  {% endif %}
 	  <div class="articleText"><p>{{ article.article_text|safe }}</p></div><br>
 	  <p>Статью оценило {{ article.article_reputation }} человек</p><hr>
-	  <div class="comment-formField">
+	  <div class="formField">
 		{% if user.is_active %}
-		  <div class="commentNote">Вы можете оставить свой комментарий, он отобразится на сайте после прохождения модерации.</div>
+		  <div class="note">Вы можете оставить свой комментарий, он отобразится на сайте после прохождения модерации.</div>
 		  <p>
 	  		<form action="" method="post">  	
 	    	  {% csrf_token %}
 	    	  {{ form.as_p }}
-	          <input type="submit" value="Отправить">
+	          <input type="submit" class="btn btn-default" value="Отправить">
 	  	 	</form>
 		  </p>
 		{% else %}
-		  <div class="commentNote">Чтобы оставить комментарии авторизуйтесь на сайте.</div>
+		  <div class="loginNote">Чтобы оставить комментарии авторизуйтесь на сайте.</div>
 		{% endif %}
 	  </div><hr>
 	  <div class="comments"><h3>Комментарии:</h3></div>
+	  <div class="unmoderated">
+	  	{% for my_comment in unmoderated %}
+	  	  <p><b>Ваш комментарий еще не прошел модерацию!</b><br>
+	  	  {{ my_comment.comment_text }}<br>
+	  	  <i>{{ my_comment.comment_created }}</i></p><br>
+		{% endfor %}
+	  </div>
 	  {% for comment in comments %}
-		<p><b>{{ comment.comment_written_by }}:<br></b>
+		<p><b>{{ comment.comment_written_by }}:</b><br>
 		{{ comment.comment_text }}<br>
-		<i>{{ comment.comment_created }}</i><br></p>
+		<i>{{ comment.comment_created }}</i></p><br>
 	  {% endfor %}
 	</div>
   </div>

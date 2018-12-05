@@ -30,6 +30,21 @@
     <div class="accountPassword">ЭЮЯ</div>
     <div class="accountLogin">Пароль учетной записи специалиста кадровой службы:</div>
     <div class="accountPassword">ЭЮЯ</div>
+    <br>
+    <div class="formField">
+      {% if user.is_active %}
+        <div class="note">Вы можете оставить свой комментарий, он отобразится на сайте после прохождения модерации.</div>
+        <p>
+          <form action="" method="post">    
+            {% csrf_token %}
+            {{ form.as_p }}
+              <input type="submit" class="btn btn-default" value="Отправить">
+          </form>
+        </p>
+      {% else %}
+        <div class="loginNote">Чтобы оставить комментарии авторизуйтесь на сайте.</div>
+      {% endif %}
+    </div><hr>
   </div>
 </div>
 {% endblock %}

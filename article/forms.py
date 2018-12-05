@@ -5,4 +5,4 @@ class CommentForm(ModelForm): #Форма комментариев
 	class Meta:
 		model = Comment
 		fields = ('comment_text',)
-			
+		

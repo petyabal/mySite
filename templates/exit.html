@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %}Выход{% endblock %}
+{% block content %}
+{% url 'logout_view' as logout %}
+{% url 'main_page' as home %}
+  <div class="container">
+    <div class="contentField">
+      <div class="pageName"><h2>Выход из учетной записи {{ user.username }}</h2></div>
+      <div class="formField">
+      	<p>Вы дейтвительно хотите выйти из учетной записи?</p>
+      	<p>    	
+      	<a href="{{ home }}"><button class="btn btn-deault">Отмена</button></a>
+      	<a href="{{ logout }}"><button class="btn btn-deault">Выйти из {{ user.username }}</button></a>
+    	</p>
+      </div>
+    </div>
+  </div>
+{% endblock %}

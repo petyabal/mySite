@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django_summernote.admin import SummernoteModelAdmin
-from article.models import Article, Comment, Tag, Category
+from article.models import Category, Article, Comment, Tag
+from mainpage.models import Programm, ProComment, Message
 
 
 # Register your models here.
@@ -21,3 +22,7 @@ admin.site.register(Article, ArticleAdminEditor)
 admin.site.register(Tag)
 admin.site.register(Category)
 admin.site.register(Comment, CommentAdmin)
+
+admin.site.register(Programm)
+admin.site.register(ProComment)
+admin.site.register(Message)

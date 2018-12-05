@@ -14,6 +14,12 @@ def selected_article(request, pk):
 	#Вывод конкретной статьи
 	article = get_object_or_404(Article, id=pk)
 	comment = Comment.objects.filter(comment_article=pk, comment_moderation=True)
+	my_comment = None
+	if request.user.is_active:
+		my_comment = Comment.objects.filter(
+			comment_article=pk, 
+			comment_moderation=False,
+			comment_written_by=request.user)
 	if request.method == 'POST':
 		form = CommentForm(request.POST)
 		if form.is_valid():
@@ -24,7 +30,8 @@ def selected_article(request, pk):
 			return redirect(selected_article, pk)
 	else:
 		form = CommentForm()
-	return render(request, 'article/article.html', {'article': article, 'form': form, 'comments': comment})
+	return render(request, 'article/article.html', {'article': article, 'form': form, 
+		'comments': comment, 'unmoderated': my_comment,})
 
 def articles_filter(request, pk):
 	#фильтр статей по дате
