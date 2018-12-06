@@ -13,7 +13,7 @@ class Programm(models.Model): #класс программы
 
 	def __str__(self):
 		return self.programm_title
-
+'''
 programms_list = [
     'your_own_game', 'interactive_crossword', 'phone_payments', 
     'dinnerware_accounting', 'world_war_ii', 'vacation_schedule'
@@ -21,7 +21,7 @@ programms_list = [
 for i in programms_list:
 	myProgramm = Programm.objects.filter(programm_title__exact=i)
 	if not myProgramm: 
-		myProgramm = Programm.objects.create(programm_title=i)
+		myProgramm = Programm.objects.create(programm_title=i)'''
 #exact-точное совпадение,contains-регистрозависимый поиск,iexact-регистронезависимый поиск
 
 

@@ -17,6 +17,10 @@ class ArticleAdminEditor(SummernoteModelAdmin, admin.ModelAdmin):
 class CommentAdmin(admin.ModelAdmin):
 	list_display = ('comment_written_by', 'comment_article', 'comment_text', 'comment_created', 'comment_moderation')
 
+class ProCommentAdmin(admin.ModelAdmin):
+	list_display = ('comment_written_by', 'comment_text', 'comment_moderation')
+	list_editable = ('comment_moderation',)
+
 
 admin.site.register(Article, ArticleAdminEditor)
 admin.site.register(Tag)
@@ -24,5 +28,5 @@ admin.site.register(Category)
 admin.site.register(Comment, CommentAdmin)
 
 admin.site.register(Programm)
-admin.site.register(ProComment)
+admin.site.register(ProComment, ProCommentAdmin)
 admin.site.register(Message)

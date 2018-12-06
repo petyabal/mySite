@@ -1,0 +1,33 @@
+{% block comment %}
+  <hr>
+  <div class="formField">
+    {% if user.is_active %}
+      <div class="note">Вы можете оставить свой комментарий, он отобразится на сайте после прохождения модерации.</div>
+      <p>
+        <form action="" method="post">    
+          {% csrf_token %}
+          {{ form.as_p }}
+          <input type="submit" class="btn btn-default" value="Отправить">
+        </form>
+      </p>
+    {% else %}
+      <div class="loginNote">Чтобы оставить комментарии авторизуйтесь на сайте.</div>
+    {% endif %}
+  </div><hr>
+  <div class="comments"><h3>Комментарии:</h3></div>
+  {% if not unmoderated and not comments %}
+    <div class="noComments">Пока нет ни одного комментария!</div>
+  {% endif %}
+  <div class="unmoderated">
+    {% for my_comment in unmoderated %}
+      <p><b>Ваш комментарий еще не прошел модерацию!</b><br>
+      {{ my_comment.comment_text }}<br>
+      <i>{{ my_comment.comment_created }}</i></p><br>
+    {% endfor %}
+  </div>
+  {% for comment in comments %}
+    <p><b>{{ comment.comment_written_by }}:</b><br>
+    {{ comment.comment_text }}<br>
+    <i>{{ comment.comment_created }}</i></p><br>
+  {% endfor %}
+{% endblock comment %}
