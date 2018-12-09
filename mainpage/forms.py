@@ -10,3 +10,4 @@ class MessageForm(ModelForm): #Форма обратной связи
 	class Meta:
 		model = Message
 		fields = ('message_text',)
+		

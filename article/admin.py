@@ -18,9 +18,11 @@ class CommentAdmin(admin.ModelAdmin):
 	list_display = ('comment_written_by', 'comment_article', 'comment_text', 'comment_created', 'comment_moderation')
 
 class ProCommentAdmin(admin.ModelAdmin):
-	list_display = ('comment_written_by', 'comment_text', 'comment_moderation')
+	list_display = ('comment_written_by', 'comment_programm', 'comment_text', 'comment_moderation')
 	list_editable = ('comment_moderation',)
 
+class MessageAdmin(admin.ModelAdmin):
+	list_display = ('message_written_by', 'message_text')
 
 admin.site.register(Article, ArticleAdminEditor)
 admin.site.register(Tag)
@@ -29,4 +31,4 @@ admin.site.register(Comment, CommentAdmin)
 
 admin.site.register(Programm)
 admin.site.register(ProComment, ProCommentAdmin)
-admin.site.register(Message)
+admin.site.register(Message, MessageAdmin)
