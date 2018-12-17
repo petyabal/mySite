@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% block title %}Онлайн-тестирование{% endblock %}
+{% block content %}
+{% load static %}
+  <div class="container">
+  	<div class="contentField">
+  	  <div class="quizTitle">{{ quiz.quiz_title }}</div>
+  	  <hr>
+  	  <div class="pageName"><h2>Вопрос №{{ step.step_number }}</h2></div>
+  	  {% if question.question_image %}
+  	    <p>
+  	      <img src="{{ question.question_image.url }}" class="img-responsive center-block">
+  	    </p><br>
+  	  {% endif %}
+  	  <div class="questionText">{{ question.question_text }}</div>
+
+      дано ответов на вопросы:{{ mylog }}<br>
+
+      <div class="row">
+      	<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+          <div class="questionField">
+            {% if answers.0.answer_image %}
+      	      <div class="currentSize" style="background-image: url({{ answers.0.answer_image.url }}"></div>
+            {% else %}
+      	      <div class="currentSize"></div>
+      	    {% endif %}
+      	    <a href="{% url 'quiz_log' pk=step.step_of_quiz step=next log=1 %}"><!--!-->
+      	      <button class="btn btn-default btn-block">{{ answers.0.answer_text }}</button>
+      	    </a>
+      	  </div>
+      	</div>
+      	<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+      	  <div class="questionField">
+      	    {% if answers.1.answer_image %}
+      	      <div class="currentSize" style="background-image: url({{ answers.1.answer_image.url }}"></div>
+      	    {% else %}
+      	      <div class="currentSize"></div>
+      	    {% endif %}
+      	    <a href="{% url 'quiz_log' pk=step.step_of_quiz step=next log=2 %}">
+      		  <button class="btn btn-default btn-block">{{ answers.1.answer_text }}</button>
+      	    </a>
+      	  </div>
+      	</div>
+      	<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+      	  <div class="questionField">
+      	    {% if answers.2.answer_image %}
+      	      <div class="currentSize" style="background-image: url({{ answers.2.answer_image.url }}"></div>
+      	    {% else %}
+      	      <div class="currentSize"></div>
+      	    {% endif %}
+      	    <a href="{% url 'quiz_log' pk=step.step_of_quiz step=next log=3 %}">
+      		  <button class="btn btn-default btn-block">{{ answers.2.answer_text }}</button>
+      	    </a>
+      	  </div>
+      	</div>
+      	<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+      	  <div class="questionField">
+      	    {% if answers.3.answer_image %}
+      	      <div class="currentSize" style="background-image: url({{ answers.3.answer_image.url }}"></div>
+      	    {% else %}
+      	      <div class="currentSize"></div>
+      	    {% endif %}
+      	    <a href="{% url 'quiz_log' pk=step.step_of_quiz step=next log=4 %}">
+      		  <button class="btn btn-default btn-block">{{ answers.3.answer_text }}</button>
+      	    </a>
+      	  </div>
+      	</div>
+      </div>
+<a href="{% url 'step_of_quiz' pk=step.step_of_quiz step=next %}">next</a>
+  	</div>
+  </div>
+{% endblock content %}

@@ -90,6 +90,43 @@
     font-weight: normal;
     font-style: italic;
 }
+<!--/* "AnonymousPro" */-->
+@font-face {
+    font-family: 'AnonymousPro';
+    src: url('{% static "fonts/AnonymousPro/AnonymousPro-Bold.eot" %}');
+    src: url('{% static "fonts/AnonymousPro/AnonymousPro-Bold.eot?#iefix" %}')format('embedded-opentype'),
+         url('{% static "fonts/AnonymousPro/AnonymousPro-Bold.woff" %}') format('woff'),
+         url('{% static "fonts/AnonymousPro/AnonymousPro-Bold.ttf" %}') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'AnonymousPro';
+    src: url('{% static "fonts/AnonymousPro/AnonymousPro-BoldItalic.eot" %}');
+    src: url('{% static "fonts/AnonymousPro/AnonymousPro-BoldItalic.eot?#iefix" %}')format('embedded-opentype'),
+         url('{% static "fonts/AnonymousPro/AnonymousPro-BoldItalic.woff" %}') format('woff'),
+         url('{% static "fonts/AnonymousPro/AnonymousPro-BoldItalic.ttf" %}') format('truetype');
+    font-weight: bold;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'AnonymousPro';
+    src: url('{% static "fonts/AnonymousPro/AnonymousPro-Italic.eot" %}');
+    src: url('{% static "fonts/AnonymousPro/AnonymousPro-Italic.eot?#iefix" %}')format('embedded-opentype'),
+         url('{% static "fonts/AnonymousPro/AnonymousPro-Italic.woff" %}') format('woff'),
+         url('{% static "fonts/AnonymousPro/AnonymousPro-Italic.ttf" %}') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'AnonymousPro';
+    src: url('{% static "fonts/AnonymousPro/AnonymousPro-Regular.eot" %}');
+    src: url('{% static "fonts/AnonymousPro/AnonymousPro-Regular.eot?#iefix" %}')format('embedded-opentype'),
+         url('{% static "fonts/AnonymousPro/AnonymousPro-Regular.woff" %}') format('woff'),
+         url('{% static "fonts/AnonymousPro/AnonymousPro-Regular.ttf" %}') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
 
 
 <!--/* HEADERS */-->
@@ -250,6 +287,11 @@
 .articleTitle {
     font-family: TypewriterRegular;
     text-align: center;
+    color: #3978AB
+}
+<!--/* Стиль загаловка онлайн-теста в списке тестов (применится для неавторизованных пользователей) */-->
+.articleTitle:hover {
+    color: gray;    
 }
 <!--/* Стиль для изображений в списке статей */-->
 .articleImage {
@@ -281,6 +323,7 @@
     font-size: 20px;
     margin-bottom: 20px;
 }
+<!--/* Стиль надписи о необходимости авторизоваться */-->
 .loginNote {
     font-family: ZopaRegular;
     font-size: 20px;
@@ -302,38 +345,88 @@
 .unmoderated {
     color: gray;
 }
+<!--/* Стиль надписи о необходимости авторизоваться для прохождения онлайн-тестов  */-->
+.loginRequred {
+    color: maroon;
+    font-family: ZopaRegular;
+    font-size: 20px;
+    text-align: center;    
+}
+<!--/* Стиль надписи со сведениями о прохождении тестирования */-->
+.quizStatus {
+    text-align: center;
+}
+<!--/* Стиль надписи с названием выбранного онлайн-тестирования */-->
+.quizTitle {
+    font-family: AnonymousPro;
+    font-size: 20px;
+    text-align: center;
+}
+<!--/* Стиль надписи, содержащей формулировку вопроса */-->
+.questionText {
+    font-family: Philosopher;
+    font-size: 20px;  
+    font-style: italic;
+    text-align: center;
+    margin-bottom: 20px;
+}
+<!--/* Стиль блока для вывода картинки к варианту ответа */-->
+.currentSize {
+    height: 300px;
+    background-position: center, center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 3px;
+}
+<!--/* Стиль блока с вариантом ответа */-->
+.questionField {
+    background-color: rgba(255,255,255,0.5);
+    border-radius: 10px;
+    padding: 25px;
+    text-align: center;
+    margin-bottom: 30px;
+}
+<!--/* Стиль оформления ссылок для скачивания программ */-->
 .myLink {
     text-align: center;
 }
+<!--/* Стиль для заголовка с названием программы */-->
 .programmName {
     font-family: Lighthaus;
     text-align: center;
 }
+<!--/* Стиль текста с описаием программы */-->
 .programmInfo {
     font-family: Philosopher;
     text-align: center;
     font-style: italic;
 }
+<!--/* Стиль подзаголовков на странице "Контакты" */-->
 .contactType {
     font-family: TypewriterRegular;
 }
+<!--/* Стиль для указания контактных данных */-->
 .contactValue {
     font-family: Philosopher;
     text-align: center;
     font-style: italic;
 }
+<!--/* Стиль заголовков страниц сайта */-->
 .pageName {
     font-family: Lighthaus;
     text-align: center;
     padding-bottom: 20px;
 }
+<!--/* стиль для оторбражения логинов для авторизации при использовании ПП */-->
 .accountLogin {
     font-style: italic;
     text-decoration: underline;
 }
+<!--/* стиль для оторбражения паролей для авторизации при использовании ПП */-->
 .accountPassword {
     text-align: center;
 }
+<!--/* Стиль текста для страницы с достижениями */-->
 .achievement {
     font-family: Philosopher;
     font-style: italic;

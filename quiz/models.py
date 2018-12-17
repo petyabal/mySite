@@ -7,11 +7,14 @@ class Quiz(models.Model): #класс темы тестирования
 		db_table = 'Quiz'
 		verbose_name = 'Онлайн-тестирование'
 		verbose_name_plural = 'Онлайн-тестирования'
+		ordering = ['quiz_title']
 
-	quiz_title = models.CharField('Тема', max_length=50, primary_key=True)
+	quiz_url = models.CharField('Url-адрес(a-z_0-9)', max_length=15, primary_key=True)
+	quiz_title = models.CharField('Тема', max_length=50)
+	quiz_description = models.CharField('Описание тестирования', max_length=250)
 
 	def __str__(self):
-		return '{}'.format(self.quiz_title)
+		return '{}'.format(self.quiz_url)
 
 
 #шаг объединяет в себе несколько вопросов, из которых выбирается один 
@@ -22,7 +25,8 @@ class Step(models.Model): #класс шага
 		verbose_name_plural = 'Шаги'
 		#ordering = ['step_of_quiz__quiz']
 
-	step_of_quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE, verbose_name='Тема тестирования')
+	step_of_quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE, 
+		verbose_name='Тема тестирования (url-адрес)')
 	step_number = models.SmallIntegerField('Номер шага')
 
 	def __str__(self):
@@ -39,6 +43,7 @@ class Question(models.Model): #класс вопроса
 		verbose_name='Шаг')
 	question_text = models.CharField('Вопрос', max_length=100)
 	question_image = models.ImageField('Изображение', upload_to='quiz', blank=True)
+	question_reference = models.TextField('Справка')
 
 	def __str__(self):
 		return self.question_text

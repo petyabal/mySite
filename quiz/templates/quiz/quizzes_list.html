@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %}Онлайн-тесты{% endblock title %}
+{% block content %}
+  <div class="container">
+  	<div class="contentField">
+  	  <div class="pageName"><h2>Доступные онлайн-тесты</h2></div>
+  	  {% if not user.is_active %}
+  		<div class='loginRequred'>
+  		  Для прохождения онлайн-тестов необходимо авторизоваться на сайте!
+  		</div><hr>
+  		{% for quiz in quizzes %}
+  		  <br>
+    	  <div class="articleTitle"><h2>{{ quiz.quiz_title }}</h2></div>
+    	  <div class="articlePreview">{{ quiz.quiz_description }}</div><hr>
+    	{% endfor %}
+      {% else %}<hr>
+        {% for quiz in quizzes %}
+    	  <div class="quizStatus">Вы еще не проходили этот онлайн-тест</div>
+    	  <div class="articleTitle"><h2>
+    	    <a href="{% url 'selected_quiz' pk=quiz.quiz_url %}">{{ quiz.quiz_title }}</a>
+    	  </h2></div>
+    	<div class="articlePreview">{{ quiz.quiz_description }}</div><hr>
+    	{% endfor %}
+	  {% endif %}
+	  {% if not quizzes %}<div class="noContent">Нет доступных онлоайн-тестов</div><hr>{% endif %}
+	</div>
+  </div>
+{% endblock content %}
