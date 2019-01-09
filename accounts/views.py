@@ -63,4 +63,4 @@ def edit_password(request):
 			return redirect('edit_password')
 	else:
 		form = PasswordChangeForm(user=request.user)
-		return render(request, 'profile.html', {'form': form})
+		return render(request, 'password.html', {'form': form})

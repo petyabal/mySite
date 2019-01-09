@@ -1,9 +1,20 @@
 from django.shortcuts import render, redirect
 from .models import Message, Programm, ProComment
 from .forms import MessageForm, ProCommentForm
+from django.contrib.auth.models import User
 
+#Главная страница сайта
 def main_page(request):
-	return render(request, 'mainpage/main_page.html', {})
+	#is_staff - доступ к административной панели БЕЗ прав изменения сведений в БД
+	audience = User.objects.filter(is_superuser=False).count()
+	result = []
+	if audience % 10 == 0 or 5 <= audience % 10 <= 9 or 11 <= audience % 100 <= 14:
+		result = ['На сайте зарегестрировано ', ' пользователей']
+	elif audience % 10 == 1:
+		result = ['На сайте зарегестрирован ', ' пользователь']
+	elif 2 <= audience % 10 <= 4:
+		result = ['На сайте зарегестрировано ', ' пользователя']
+	return render(request, 'mainpage/main_page.html', {'audience': audience, 'results': result})
 
 def myViewMaker(request, name, html):
     comment = ProComment.objects.filter(comment_frogramm=name, 
@@ -25,7 +36,7 @@ def myViewMaker(request, name, html):
     	form = ProCommentForm()
     return render(request, html, {'form': form, 'comments': comment, 'unmoderated': my_comment})
 
-
+#страница "Своей игры" на английском языке на сайте
 def your_own_game(request):
 	comment = ProComment.objects.filter(comment_programm='your_own_game', 
 		comment_moderation=True)
@@ -49,6 +60,7 @@ def your_own_game(request):
 	return render(request, 'mainpage/your_own_game.html', {'form': form, 
 		'comments': comment, 'unmoderated': my_comment})
 
+#страница интерактивного кроссворда на сайте
 def interactive_crossword(request):
 	comment = ProComment.objects.filter(comment_programm='interactive_crossword', 
 		comment_moderation=True)
@@ -72,6 +84,7 @@ def interactive_crossword(request):
 	return render(request, 'mainpage/interactive_crossword.html', {'form': form, 
 		'comments': comment, 'unmoderated': my_comment})
 
+#страница программы по оплате услуг мобильной связи на сайте
 def phone_payments(request):
 	comment = ProComment.objects.filter(comment_programm='phone_payments', 
 		comment_moderation=True)
@@ -95,6 +108,7 @@ def phone_payments(request):
 	return render(request, 'mainpage/phone_payments.html', {'form': form, 
 		'comments': comment, 'unmoderated': my_comment})
 
+#страница программы учета посуды в ресторане "Спасательный круг" на сайте
 def dinnerware_accounting(request):
 	comment = ProComment.objects.filter(comment_programm='dinnerware_accounting', 
 		comment_moderation=True)
@@ -118,6 +132,7 @@ def dinnerware_accounting(request):
 	return render(request, 'mainpage/dinnerware_accounting.html', {'form': form, 
 		'comments': comment, 'unmoderated': my_comment})
 
+#страница "Своей игры" на тему "История Второй мировой войны" на сайте
 def world_war_ii(request):
 	comment = ProComment.objects.filter(comment_programm='world_war_ii', 
 		comment_moderation=True)
@@ -141,6 +156,7 @@ def world_war_ii(request):
 	return render(request, 'mainpage/world_war_ii.html', {'form': form, 
 		'comments': comment, 'unmoderated': my_comment})
 
+#страница программы для формирования и ведения графика отпусков в Колэнерго
 def vacation_schedule(request):
 	comment = ProComment.objects.filter(comment_programm='vacation_schedule', 
 		comment_moderation=True)
@@ -164,6 +180,7 @@ def vacation_schedule(request):
 	return render(request, 'mainpage/vacation_schedule.html', {'form': form, 
 		'comments': comment, 'unmoderated': my_comment})
 
+#страница с контактными данными и формой обратной связи
 def contacts(request):
 	message = None
 	if request.user.is_active:
@@ -180,6 +197,6 @@ def contacts(request):
 	return render(request, 'mainpage/contacts.html', {'form': form, 
 		'messages': message})
 
+#страница с указанием достижений
 def achievements(request):
 	return render(request, 'mainpage/achievements.html', {})
-

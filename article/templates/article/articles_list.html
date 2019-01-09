@@ -4,14 +4,34 @@
 <div class="container">
   <div class="contentField">
   	<div class="pageName"><h2>Новости сайта:</h2></div>
-  	<div class="articlesFilter">
-  	  Фильтр новостей: 
-	  <a href="{% url 'articles_filter'  pk=1 %}"><button>День</button></a>
-	  <a href="{% url 'articles_filter'  pk=2 %}"><button>Неделя</button></a>
-	  <a href="{% url 'articles_filter'  pk=3 %}"><button>Месяц</button></a>
-	  <a href="{% url 'articles_filter'  pk=4 %}"><button>Все</button></a>
+  	<button class="click_me_to_show btn btn-default btn-block" style="font-family: ZopaRegular;">Фильтр новостей</button>
+  	<div class="filterField" style="display: none;">  
+  	  <h4>Фильтрация новостей:</h4>
+	  <div class="articlesFilter">
+	    за период:
+	    <a href="{% url 'articles_date_filter'  pk='day' %}"><button>День</button></a>
+	    <a href="{% url 'articles_date_filter'  pk='week' %}"><button>Неделя</button></a>
+	    <a href="{% url 'articles_date_filter'  pk='month' %}"><button>Месяц</button></a>
+	    <a href="{% url 'articles_date_filter'  pk='all' %}"><button>Все</button></a>
+	  </div>
+	  <div class="articlesFilter">
+	    по тегам:
+	    {% for tag in tags %}
+	      <a href="{% url 'articles_tags_filter' pk=tag.tag_title %}"><button>{{ tag.tag_title }}</button></a>
+	    {% endfor %}
+	  </div>
+	  <div class="articlesFilter">
+	  	по автору:
+	  	{% for author in authors %}
+	  	  <a href="{% url 'articles_author_filter' pk=author.username %}"><button>{{ author.username }}</button></a>
+	  	{% endfor %}
+	  </div>
+	  <button class="click_me_to_hide btn btn-default btn-block">Скрыть панель фильтрации</button>
 	</div>
 	<hr>
+	{% if not articles %}
+	  <div class="noComments"><h3>Нет новостей!</h3></div>
+	{% endif %}
 	{% for article in articles %}
 	  <div class="articleInfo">{{ article.article_created }}</div><br>
 	  <div class="articleTitle"><h2>
@@ -25,4 +45,3 @@
   </div>
 </div>
 {% endblock content %}
-</div>

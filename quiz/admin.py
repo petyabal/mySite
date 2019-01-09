@@ -3,7 +3,9 @@ from django.contrib import admin
 from quiz.models import Quiz, Step, Question, Answer
 
 class QuizAdmin(admin.ModelAdmin):
-	list_display = ('quiz_title', 'quiz_url', 'quiz_description')
+	list_display = ('quiz_title', 'quiz_url', 'quiz_description', 
+		'quiz_created_by', 'quiz_published')
+	list_editable = ('quiz_published',)
 
 class StepAdmin(admin.ModelAdmin):
 	list_display = ('step_of_quiz',	'step_number')

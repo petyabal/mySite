@@ -7,7 +7,7 @@ class Programm(models.Model): #класс программы
 	class Meta():
 		db_table = 'Programm'
 		verbose_name = 'Программа'
-		verbose_name_plural = 'Программы'
+		verbose_name_plural = '1. Программы'
 
 	programm_title = models.CharField('Название программы', max_length=80, primary_key=True)
 
@@ -29,7 +29,7 @@ class ProComment(models.Model): #класс комментария
 	class Meta():
 		db_table = 'ProComment'
 		verbose_name = 'Комментарий'
-		verbose_name_plural = 'Комментарии'
+		verbose_name_plural = '2. Комментарии'
 		ordering = ['-comment_created']
 		
 	comment_written_by = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Автор')
@@ -47,7 +47,7 @@ class Message(models.Model):#класс сообщения с формы обр�
 	class Meta():
 		db_table = 'Message'
 		verbose_name = 'Сообщение'
-		verbose_name_plural = 'Сообщения'
+		verbose_name_plural = '3. Сообщения'
 		ordering = ['-message_sent']
 
 	message_written_by = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Автор')

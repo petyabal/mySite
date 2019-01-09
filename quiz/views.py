@@ -2,9 +2,11 @@ from django.shortcuts import render, get_object_or_404, redirect
 # Create your views here.
 from .models import Quiz, Step, Question, Answer
 from random import randint
+from django.db.models import Q
 
 def quizzes_list(request):
-	quiz = Quiz.objects.all() 
+	quiz = Quiz.objects.filter(
+		Q(quiz_published=True) | Q(quiz_created_by=request.user))
 	return render(request, 'quiz/quizzes_list.html', {'quizzes': quiz})
 
 def selected_quiz(request, pk):
@@ -30,13 +32,14 @@ def step_of_quiz(request, pk, step):
 
 # изменение значения в зависимости от ответа
 def quiz_log(request, pk, step, log):
-	if log == 1:
+	mylog = log
+	if mylog == 1:
 		request.session["answers"] = 1
-	elif log  == 2:
+	elif mylog  == 2:
 		request.session["answers"] = 2
-	elif log == 3:
+	elif mylog == 3:
 		request.session["answers"] = 3
-	elif log == 4:
+	elif mylog == 4:
 		request.session["answers"] = 4
 	return redirect(step_of_quiz, pk, step)
 #

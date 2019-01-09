@@ -8,7 +8,7 @@ class Category(models.Model): #класс категории статей
 	class Meta():
 		db_table = 'Category'
 		verbose_name = 'Категория'
-		verbose_name_plural = 'Категории'
+		verbose_name_plural = '1. Категории'
 		ordering = ['category_title']
 
 	category_title = models.CharField('Категория', max_length=50)
@@ -16,11 +16,12 @@ class Category(models.Model): #класс категории статей
 	def __str__(self):
 		return self.category_title
 
+
 class Tag(models.Model): #класс тегов статей
 	class Meta():
 		db_table = 'Tag'
 		verbose_name = 'Тег'
-		verbose_name_plural = 'Теги'
+		verbose_name_plural = '2. Теги'
 		ordering = ['tag_title']
 
 	tag_title = models.CharField('Тег', max_length=50);
@@ -33,7 +34,7 @@ class Article(models.Model): #класс статьи
 	class Meta():
 		db_table = 'Article'
 		verbose_name = 'Статья'
-		verbose_name_plural = 'Статьи'
+		verbose_name_plural = '3. Статьи'
 		ordering = ['-article_created']
 
 	article_title = models.CharField('Заголовок', max_length=100)
@@ -60,7 +61,7 @@ class Comment(models.Model): #класс комментария
 	class Meta():
 		db_table = 'Comment'
 		verbose_name = 'Комментарий'
-		verbose_name_plural = 'Комментарии'
+		verbose_name_plural = '4. Комментарии'
 		ordering = ['-comment_created']
 		
 	comment_written_by = models.ForeignKey(User, 

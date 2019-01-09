@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% block title %}Профиль пользователя{% endblock %}
 {% block content %}
+{% url 'edit_password' as edit_pass %}
   <div class="container">
   	<div class="contentField">
   	  <div class="pageName"><h2>Профиль пользователя {{ user.username }}</h2></div>
@@ -14,7 +15,8 @@
 	  <p>Логин: {{ user.username }}</p>
 	  	<p>Имя: {{ user.first_name }}{% if not user.first_name %}не указано{% endif %}</p>
 	  	<p>Фамилия: {{ user.last_name }}{% if not user.last_name %}не указана{% endif %}</p>
-	  	<p>Адрес эл. почты: {{ user.email }}{% if not user.email %}не указан{% endif %}</p> 
+	  	<p>Адрес эл. почты: {{ user.email }}{% if not user.email %}не указан{% endif %}</p>
+	  	<a href="{{ edit_pass }}"><button class="btn btn-danger">Изменить пароль</button></a> 
 	</div>
   </div>
 {% endblock %}

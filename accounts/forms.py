@@ -53,4 +53,4 @@ class EditProfileForm(UserChangeForm):
 	email = forms.EmailField(label='Адрес эл. почты', required=False)
 	first_name = forms.CharField(label='Имя', required=False)
 	last_name = forms.CharField(label='Фамилия', required=False)
-	password = forms.CharField(label='Пароль (зашифрован, можно изменить)')
+	password = forms.CharField(label='Пароль (зашифрован, для изменения нажмите кнопку внизу)')

@@ -1,14 +1,18 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Article, Comment
+from .models import Tag, Article, Comment
 from .forms import CommentForm
 from datetime import datetime, timedelta
+from django.contrib.auth.models import User
 
 # Create your views here.
 def articles_list(request):
 	#Получение списка статей
 	article = Article.objects.all()
 	#filter(article_moderation=True)
-	return render(request, "article/articles_list.html", {"articles": article})
+	tag = Tag.objects.all()
+	author = User.objects.all()
+	return render(request, "article/articles_list.html", {'articles': article, 
+		'tags': tag, 'authors': author})
 
 def selected_article(request, pk):
 	#Вывод конкретной статьи
@@ -33,18 +37,38 @@ def selected_article(request, pk):
 	return render(request, 'article/article.html', {'article': article, 'form': form, 
 		'comments': comment, 'unmoderated': my_comment,})
 
-def articles_filter(request, pk):
+def articles_date_filter(request, pk):
 	#фильтр статей по дате
 	article = Article.objects.all()
-	if pk == 1:
+	tag = Tag.objects.all()
+	author = User.objects.all()
+	if pk == 'day':
 		now = datetime.now() - timedelta(minutes=60*24)
 		article = article.filter(article_created__gte=now)
-	elif pk == 2:
+	elif pk == 'week':
 		now = datetime.now() - timedelta(minutes=60*24*7)
 		article = article.filter(article_created__gte=now)
-	elif pk == 3:
+	elif pk == 'month':
 		now = datetime.now() - timedelta(minutes=60*24*30)
 		article = article.filter(article_created__gte=now)
-	elif pk == 4:
-		article = article
-	return render(request, 'article/articles_list.html', {'articles': article})
+	elif pk == 'all':
+		#article = article
+		return redirect(articles_list)
+	return render(request, 'article/articles_list.html', {'articles': article, 'tags': tag, 
+		'authors': author})
+
+def articles_tags_filter(request, pk):
+	#фильтр статей по тегам
+	article = Article.objects.filter(article_tags__tag_title__exact=pk)
+	tag = Tag.objects.all()
+	author = User.objects.all()
+	return render(request, 'article/articles_list.html', {'articles': article, 'tags': tag, 
+		'authors': author})
+
+def articles_author_filter(request, pk):
+	#фильтр статей по автору
+	article = Article.objects.filter(article_written_by__username__exact=pk)
+	tag = Tag.objects.all()
+	author = User.objects.all()
+	return render(request, 'article/articles_list.html', {'articles': article, 'tags': tag, 
+		'authors': author})

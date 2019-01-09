@@ -23,5 +23,18 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="{% static 'js/bootstrap.js' %}"></script>
+    <script src="{% static 'js/script.js' %}"></script>
+    
+    <script type="text/javascript">
+    $(".click_me_to_hide").click(function(){
+      $(".filterField").hide(); // Для скрытия
+      $(".click_me_to_show").show();
+    });
+    $(".click_me_to_show").click(function(){
+      $(".filterField").show(); // Для отображения
+      $(".click_me_to_show").hide();
+    })
+  </script>
+  
   </body>
 </html>

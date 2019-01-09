@@ -1,17 +1,23 @@
 from django.db import models
 # Create your models here.
+from django.contrib.auth import get_user_model
+User = get_user_model()
 
 
 class Quiz(models.Model): #класс темы тестирования
 	class Meta():
 		db_table = 'Quiz'
 		verbose_name = 'Онлайн-тестирование'
-		verbose_name_plural = 'Онлайн-тестирования'
+		verbose_name_plural = '1. Онлайн-тестирования'
 		ordering = ['quiz_title']
 
 	quiz_url = models.CharField('Url-адрес(a-z_0-9)', max_length=15, primary_key=True)
 	quiz_title = models.CharField('Тема', max_length=50)
 	quiz_description = models.CharField('Описание тестирования', max_length=250)
+	quiz_created_by = models.ForeignKey(User, on_delete=models.SET_NULL, 
+		verbose_name='Добавлено пользователем', null=True)
+	quiz_published = models.BooleanField('Тестирование доступно для прохождения', 
+		default=False)
 
 	def __str__(self):
 		return '{}'.format(self.quiz_url)
@@ -22,7 +28,7 @@ class Step(models.Model): #класс шага
 	class Meta():
 		db_table = 'Step'
 		verbose_name = 'Шаг'
-		verbose_name_plural = 'Шаги'
+		verbose_name_plural = '2. Шаги'
 		#ordering = ['step_of_quiz__quiz']
 
 	step_of_quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE, 
@@ -36,7 +42,7 @@ class Question(models.Model): #класс вопроса
 	class Meta():
 		db_table = 'Question'
 		verbose_name = 'Вопрос'
-		verbose_name_plural = 'Вопросы'
+		verbose_name_plural = '3. Вопросы'
 		#ordering = ['']
 
 	question_of_step = models.ForeignKey(Step, on_delete=models.CASCADE, 
@@ -52,7 +58,7 @@ class Answer(models.Model): #класс ответа
 	class Meta():
 		db_table = 'Answer'
 		verbose_name = 'Ответ'
-		verbose_name_plural = 'Ответы'
+		verbose_name_plural = '4. Ответы'
 		#ordering = ['']
 
 	answer_to_the_question = models.ForeignKey(Question, 
