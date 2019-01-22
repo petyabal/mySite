@@ -18,15 +18,20 @@ def step_of_quiz(request, pk, step):
 	my_queryset = Question.objects.filter(
 		question_of_step__step_of_quiz=pk, question_of_step__step_number=step
 		)
+	my_step = int(step)#номер текущего шага для progress bar
 	if my_queryset:
 		step = get_object_or_404(Step, step_of_quiz=pk, step_number=step)
 		quiz = Quiz.objects.get(quiz_url=pk)
 		question = my_queryset[randint(0, len(my_queryset) - 1)]#выбираем случайный вопрос
 		answer = Answer.objects.filter(answer_to_the_question=question)
 		next = step.step_number + 1
+		all_steps = Step.objects.filter(step_of_quiz=pk).count()#получение числа шагов для progress bar
+		progress = str((my_step - 1) / all_steps * 100)#расчет прогресса прохождения
+		current = str(1 / all_steps * 100)
 		mylog = request.session["answers"]# вывод текущего значения
 		return render(request, 'quiz/question.html', {'quiz':quiz, 'step': step,# 
-			'question': question, 'answers': answer, 'next': next, 'mylog': mylog})#
+			'question': question, 'answers': answer, 'next': next, 'mylog': mylog, 
+			'progress': progress, 'current': current})#
 	else:
 		return redirect(result, pk)
 

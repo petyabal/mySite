@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% block title %}Достижения{% endblock %}
 {% block content %}
+{% load static %}
   <div class="container">
     <div class="contentField">
     	<div class="pageName"><h2>Достижения:</h2></div>
@@ -17,6 +18,7 @@
     	<h3>2018</h3>
     	<div class="achievement">
     	  <ul>
+          <li><h4>Участие в демонстрационном экзамене по стандартам ВорлдСкиллс Россия (компетенция: 09 Программные решения для бизеса) - <a href="{% static 'documents/Баль Петр Владимирович.pdf' %}">Skills passport</a>;</h4></li>
     	    <li><h4>Курсы на stepik.org:</h4></li>
     	    <ul>
     	  	  <li>
@@ -42,6 +44,7 @@
     	    </ul>
     	  </ul>
       </div>
+      <hr>
       <h3>2019</h3>
       <div class="achievement">
         <ul>

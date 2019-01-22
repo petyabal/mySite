@@ -1,0 +1,9 @@
+{% block while_logged_in %}
+	{% if user.is_active %}
+	<div class="container">
+		<div class="while_logged_in">
+			Установлен период для прохождения авторизации через каждые 3 часа.
+		</div>	
+	</div>
+	{% endif %}
+{% endblock  %}

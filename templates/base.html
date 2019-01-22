@@ -15,8 +15,13 @@
   <body class="mainpageBackground">
     {% include 'header.html' %}
     {% include 'navbar.html' %}
+    {% include 'while_logged_in.html' %}
     {% block content %}
-    <div class="container"><div class="contentField"><div class="noContent"><h4>NO_CONTENT!</h4></div></div></div>
+      <div class="container">
+        <div class="contentField">
+          <div class="noContent"><h4>NO_CONTENT!</h4></div>
+        </div>
+      </div>
     {% endblock %}
     {% include 'footer.html' %}
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

@@ -115,7 +115,8 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+#необходимо для локализации дат
+LANGUAGE_CODE = 'ru-ru'
 
 TIME_ZONE = 'Europe/Moscow'
 
@@ -151,3 +152,7 @@ AUTHENTICATION_BACKENDS = (
 LOGIN_REDIRECT_URL = '/'
 LOGIN_URL = '/accounts/login/'
 EMAIL_BACKEND = 'django.core.mail.backends.locmem.EmailBackend'
+
+#Время жизни сессионной куки (через какое время снова понадобится авторизоваться)
+#По умолчанию: 1209600 (2 недели в секундах)
+SESSION_COOKIE_AGE = 10800 #секунд (3 часа)
