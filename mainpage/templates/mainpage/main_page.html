@@ -25,7 +25,23 @@
   	    <li>JavaScript.</li>
   	  </ul>
       <hr>
-      <div class="audienceDiv">{{ results.0 }}<span class="audienceValue">{{ audience }}</span>{{ results.1 }}
+      <div class="audienceDiv">
+        {{ results.0 }}
+        <a role="button" class="audienceValue" style="color: black;">{{ audience }}</a>
+        {{ results.1 }}<br>
+        <div class="audienceList" style="display: none;">
+          {% for site_user in site_users %}
+            {{ site_user.username }}<br>
+          {% endfor %}
+        </div>
+        {{ results.2 }}
+        <a role="button" class="adminsNumber" style="color: black;">{{ adminsNumber }}</a>
+        {{ results.3 }}
+        <div class="adminsList" style="display: none;">
+          {% for admin in admins %}
+            {{ admin.username }}<br>
+          {% endfor %}
+        </div>
       </div>
     </div>
   </div>

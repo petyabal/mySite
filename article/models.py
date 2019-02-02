@@ -49,9 +49,12 @@ class Article(models.Model): #класс статьи
 	article_image = models.ImageField('Изображение', upload_to='article', blank=True) #-
 	article_created = models.DateTimeField('Дата создания', default=timezone.now) 
 	article_updated = models.DateTimeField('Дата изменения', default=timezone.now) #-
-	article_reputation = models.IntegerField('Актуальность', default=0) #-
 	article_moderation = models.BooleanField('Модерация', default=False) #-
 	article_keywords = models.CharField('Ключевые слова', max_length=50)
+	article_marked_positive_by = models.ManyToManyField(User, 
+		related_name='marked_positive_by', verbose_name='Оценили положительно', blank=True)
+	article_marked_negative_by = models.ManyToManyField(User,
+		related_name='marked_negative_by', verbose_name='Оценили отрицательно', blank=True)	
 
 	def __str__(self):
 		return self.article_title

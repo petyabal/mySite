@@ -3,6 +3,7 @@ from .models import Tag, Article, Comment
 from .forms import CommentForm
 from datetime import datetime, timedelta
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def articles_list(request):
@@ -17,13 +18,21 @@ def articles_list(request):
 def selected_article(request, pk):
 	#Вывод конкретной статьи
 	article = get_object_or_404(Article, id=pk)
+	positiveMarks = str(article.article_marked_positive_by.count())
+	negativeMarks = str(article.article_marked_negative_by.count())
 	comment = Comment.objects.filter(comment_article=pk, comment_moderation=True)
 	my_comment = None
+	user_choise = 0
 	if request.user.is_active:
 		my_comment = Comment.objects.filter(
 			comment_article=pk, 
 			comment_moderation=False,
 			comment_written_by=request.user)
+		if request.user in article.article_marked_positive_by.all():
+			user_choise = 1
+		elif request.user in article.article_marked_negative_by.all():
+			user_choise = 2
+		else: user_choise = 0
 	if request.method == 'POST':
 		form = CommentForm(request.POST)
 		if form.is_valid():
@@ -35,7 +44,30 @@ def selected_article(request, pk):
 	else:
 		form = CommentForm()
 	return render(request, 'article/article.html', {'article': article, 'form': form, 
-		'comments': comment, 'unmoderated': my_comment,})
+		'positiveMarks': positiveMarks, 'negativeMarks': negativeMarks, 
+		'user_choise': user_choise,	'comments': comment, 'unmoderated': my_comment,})
+
+@login_required
+def voting(request, pk, note):
+	article = Article.objects.get(id=pk)
+	if (note == "+") and (request.user not in article.article_marked_positive_by.all()) and (
+	request.user not in article.article_marked_negative_by.all()):
+		article_marked_positive_by = article.article_marked_positive_by.add(request.user)
+		article.save()
+	elif (note == "+") and (request.user in article.article_marked_positive_by.all()) and (
+	request.user not in article.article_marked_negative_by.all()):
+		article_marked_positive_by = article.article_marked_positive_by.remove(request.user)
+		article.save()
+	elif (note == "-") and (request.user not in article.article_marked_negative_by.all()) and ( 
+	request.user not in article.article_marked_positive_by.all()):
+		article_marked_negative_by = article.article_marked_negative_by.add(request.user)
+		article.save()
+	elif (note == "-") and (request.user in article.article_marked_negative_by.all()) and ( 
+	request.user not in article.article_marked_positive_by.all()):
+		article_marked_negative_by = article.article_marked_negative_by.remove(request.user)
+		article.save()
+	else: pass
+	return redirect(selected_article, pk)
 
 def articles_date_filter(request, pk):
 	#фильтр статей по дате

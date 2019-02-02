@@ -1,4 +1,4 @@
-{% block comment %}
+{% block comments %}
   <hr>
   <div class="formField">
     {% if user.is_active %}
@@ -30,4 +30,4 @@
     {{ comment.comment_text }}<br>
     <i>{{ comment.comment_created }}</i></p><br>
   {% endfor %}
-{% endblock comment %}
+{% endblock comments %}

@@ -6,15 +6,26 @@ from django.contrib.auth.models import User
 #Главная страница сайта
 def main_page(request):
 	#is_staff - доступ к административной панели БЕЗ прав изменения сведений в БД
-	audience = User.objects.filter(is_superuser=False).count()
+	site_user = User.objects.filter(is_superuser=False)
+	audience = site_user.count()
+	admin = User.objects.filter(is_superuser=True)
+	adminsNumber = admin.count()
 	result = []
 	if audience % 10 == 0 or 5 <= audience % 10 <= 9 or 11 <= audience % 100 <= 14:
-		result = ['На сайте зарегестрировано ', ' пользователей']
+		result = ['На нашем сайте зарегестрировано ', ' пользователей']
 	elif audience % 10 == 1:
-		result = ['На сайте зарегестрирован ', ' пользователь']
+		result = ['На нашем сайте зарегестрирован ', ' пользователь']
 	elif 2 <= audience % 10 <= 4:
-		result = ['На сайте зарегестрировано ', ' пользователя']
-	return render(request, 'mainpage/main_page.html', {'audience': audience, 'results': result})
+		result = ['На нашем сайте зарегестрировано ', ' пользователя']
+	result.append('Сайт обслуживается ')
+	if adminsNumber % 10 == 0 or 5 <= adminsNumber % 10 <= 9 or 11 <= adminsNumber % 100 <= 14:
+		result.append(' администраторами')
+	elif adminsNumber % 10 == 1:
+		result.append(' администратором')
+	elif 2 <= adminsNumber % 10 <= 4:
+		result.append(' администраторами')
+	return render(request, 'mainpage/main_page.html', {'site_users': site_user, 
+		'audience': audience, 'admins': admin, 'adminsNumber': adminsNumber, 'results': result})
 
 def myViewMaker(request, name, html):
     comment = ProComment.objects.filter(comment_frogramm=name, 

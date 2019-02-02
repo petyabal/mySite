@@ -31,9 +31,8 @@
 	  {% else %}
 		<p></p>
 	  {% endif %}
-	  <div class="articleText"><p>{{ article.article_text|safe }}</p></div><br>
-	  <p>Статью оценило {{ article.article_reputation }} человек</p>
-	  <!--<div class="formField">
+	  <div class="articleText"><p>{{ article.article_text|safe }}</p></div>
+	    <!--<div class="formField">
 		{% if user.is_active %}
 		  <div class="note">Вы можете оставить свой комментарий, он отобразится на сайте после прохождения модерации.</div>
 		  <p>
@@ -60,6 +59,7 @@
 		{{ comment.comment_text }}<br>
 		<i>{{ comment.comment_created }}</i></p><br>
 	  {% endfor %}-->
+	  {% block relations %}{% include 'relations.html' %}{% endblock relations %}
 	  {% block comments %}{% include 'comments.html' %}{% endblock comments %}
 	</div>
   </div>

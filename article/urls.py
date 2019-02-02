@@ -7,4 +7,5 @@ urlpatterns = [
     path('date_filter/<pk>', views.articles_date_filter, name='articles_date_filter'),
     path('tags_filter/<pk>', views.articles_tags_filter, name='articles_tags_filter'),
     path('author/<pk>', views.articles_author_filter, name='articles_author_filter'),
+    path('article/<int:pk>/<note>', views.voting, name='voting')
 ]

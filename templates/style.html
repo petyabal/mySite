@@ -127,6 +127,72 @@
     font-weight: normal;
     font-style: normal;
 }
+<!--/* "RUSBoycott" */-->
+@font-face {
+    font-family: 'RUSBoycott';
+    src: url('{% static "fonts/RUSBoycott/RUSBoycott.eot" %}');
+    src: url('{% static "fonts/RUSBoycott/RUSBoycott.eot?#iefix" %}')format('embedded-opentype'),
+         url('{% static "fonts/RUSBoycott/RUSBoycott.woff" %}') format('woff'),
+         url('{% static "fonts/RUSBoycott/RUSBoycott.ttf" %}') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+<!--/* "Monitorica" */-->
+@font-face {
+    font-family: 'Monitorica';
+    src: url('{% static "fonts/Monitorica/Monitorica-BoldItalic.eot" %}');
+    src: url('{% static "fonts/Monitorica/Monitorica-BoldItalic.eot?#iefix" %}')format('embedded-opentype'),
+         url('{% static "fonts/Monitorica/Monitorica-BoldItalic.woff" %}') format('woff'),
+         url('{% static "fonts/Monitorica/Monitorica-BoldItalic.ttf" %}') format('truetype');
+    font-weight: bold;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'Monitorica';
+    src: url('{% static "fonts/Monitorica/Monitorica-Italic.eot" %}');
+    src: url('{% static "fonts/Monitorica/Monitorica-Italic.eot?#iefix" %}')format('embedded-opentype'),
+         url('{% static "fonts/Monitorica/Monitorica-Italic.woff" %}') format('woff'),
+         url('{% static "fonts/Monitorica/Monitorica-Italic.ttf" %}') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'Monitorica';
+    src: url('{% static "fonts/Monitorica/Monitorica.eot" %}');
+    src: url('{% static "fonts/Monitorica/Monitorica.eot?#iefix" %}')format('embedded-opentype'),
+         url('{% static "fonts/Monitorica/Monitorica.woff" %}') format('woff'),
+         url('{% static "fonts/Monitorica/Monitorica.ttf" %}') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Monitorica';
+    src: url('{% static "fonts/Monitorica/Monitorica-Bold.eot" %}');
+    src: url('{% static "fonts/Monitorica/Monitorica-Bold.eot?#iefix" %}')format('embedded-opentype'),
+         url('{% static "fonts/Monitorica/Monitorica-Bold.woff" %}') format('woff'),
+         url('{% static "fonts/Monitorica/Monitorica-Bold.ttf" %}') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+<!--/* "TT Directors DEMO" */-->
+@font-face {
+    font-family: 'TT Directors DEMO';
+    src: url('{% static "fonts/Directors/TTDirectorsDEMOBL-Regular.eot" %}');
+    src: url('{% static "fonts/Directors/TTDirectorsDEMOBL-Regular.eot?#iefix" %}')format('embedded-opentype'),
+         url('{% static "fonts/Directors/TTDirectorsDEMOBL-Regular.woff" %}') format('woff'),
+         url('{% static "fonts/Directors/TTDirectorsDEMOBL-Regular.ttf" %}') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'TT Directors DEMO Thin Rough';
+    src: url('{% static "fonts/Directors/TTDirectorsDEMOThinRough-Thin.eot" %}');
+    src: url('{% static "fonts/Directors/TTDirectorsDEMOThinRough-Thin.eot?#iefix" %}') format('embedded-opentype'),
+         url('{% static "fonts/Directors/TTDirectorsDEMOThinRough-Thin.woff" %}') format('woff'),
+         url('{% static "fonts/Directors/TTDirectorsDEMOThinRough-Thin.ttf" %}') format('truetype');
+    font-weight: 100;
+    font-style: normal;
+}
 
 
 <!--/* HEADERS */-->
@@ -296,7 +362,7 @@
 .articleTitle {
     font-family: TypewriterRegular;
     text-align: center;
-    color: #3978AB
+    color: #3978AB;
 }
 <!--/* Стиль загаловка онлайн-теста в списке тестов (применится для неавторизованных пользователей) */-->
 .articleTitle:hover {
@@ -318,6 +384,37 @@
 .articleText {
     font-family: Philosopher;
     font-size: 20px;
+}
+<!--/* Стиль блока голосования */-->
+.votingDiv { 
+    text-align: center;
+    vertical-align: middle;
+    font-family: Monitorica;
+    margin-bottom: 20px;
+}
+.votingResultPositive {
+    border-radius: 6px;
+    color: darkgreen;
+    font-family: Monitorica;
+    font-size: 30px;
+}
+.votingResultPositive:hover {
+    color: darkgreen;
+}
+.votingResultNegative {
+    border-radius: 6px;
+    color: maroon;
+    font-family: Monitorica;
+    font-size: 30px;
+}
+.votingResultNegative:hover {
+    color: maroon;
+}
+<!--/* Стиль надписи с именами проголосовавших пользователей */-->
+.voting {
+    font-family: Monitorica;
+    font-size: 25px;
+    text-align: center;
 }
 <!--/* Блок для формы отправки комментария */-->
 .formField {
@@ -361,11 +458,18 @@
     font-size: 20px;
     text-align: center;    
 }
+<!--/* Стиль надписи, содержащей сведения о промежутке времени между авторизациями */-->
 .while_logged_in {
     background-color: rgba(200,255,200,0.8);
     font-family: ZopaRegular;
     padding-bottom: 0px;
     text-align: center;
+}
+<!--/* Стиль надписи со ссылкой для сброса пароля */-->
+.forgottenPassword {
+    margin-top: 20px;
+    text-align: center;
+    text-decoration: underline;
 }
 <!--/* Стиль надписи со сведениями о прохождении тестирования */-->
 .quizStatus {
@@ -401,17 +505,43 @@
     text-align: center;
     margin-bottom: 30px;
 }
+<!--/* Стиль блока со сведениями об размере аудитории  сайта */-->
 .audienceDiv {
+    font-family: RUSBoycott;
+    font-size: 21px;
     text-align: center;
-    font-size: 18px;
 }
+<!--/* Стиль блока с числом пользователей сайта */-->
 .audienceValue {
     border-radius: 15px;
     border: 1px solid transparent;
     border-color: red;
-    font-size: 20px;
-    font-style: bold;
+    font-size: 26px;
+    font-family: Monitorica;
+    font-weight: bold;
     padding: 10px;
+}
+<!--/* Стиль блока с перечислением пользователей сайта */-->
+.audienceList {
+    font-family: Monitorica;
+    font-size: 20px;
+    text-align: center;
+}
+<!--/* Стиль блока с числом администраторов сайта */-->
+.adminsNumber {
+    border-radius: 15px;
+    border: 1px solid transparent;
+    border-color: rgb(0,192,128);
+    font-size: 26px;
+    font-family: Monitorica;
+    font-weight: bold;
+    padding: 10px;
+}
+<!--/* Стиль блока с перечислением администраторов сайта */-->
+.adminsList {
+    font-family: Monitorica;
+    font-size: 20px;
+    text-align: center;
 }
 <!--/* Стиль оформления ссылок для скачивания программ */-->
 .myLink {
@@ -481,5 +611,5 @@
 .footerLetters {
     font-family: ZopaRegular;
 }
-<!--/* !!! STYLE VERSION (30.11.2018) !!! */-->
+<!--/* !!! STYLE VERSION (25.01.2019) !!! */-->
 {% endblock %}
