@@ -3,7 +3,19 @@
 {% block content %}
 <div class="container">
   <div class="contentField"><h1>GAME OVER</h1>
-    <div>Значение пременной mylog:{{ mylog }}</div>
+
+    <div>Вопросы: {% for questionsLog in questions %}{{ questionsLog }}, {% endfor %}</div>
+    <hr>
+    {% for qSet in questionsSet %}
+    	<p>{{ qSet.question_text }}</p>
+    	{% for aSet in answersSet %}
+    		{% if aSet.answer_to_the_question.id == qSet.id %}
+    			{{ aSet.answer_text }}
+    		{% endif %}
+    	{% endfor %}
+    {% endfor %}
+    <hr>
+    <div>Ответы: {% for answersLog in answers %}{{ answersLog }}, {% endfor %}</div>
    </div>
 </div>
 {% endblock content %}

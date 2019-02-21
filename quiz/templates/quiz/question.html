@@ -23,7 +23,9 @@
   	  {% endif %}
   	  <div class="questionText">{{ question.question_text }}</div>
 
-      дано ответов на вопросы:{{ mylog }}<br>
+      {% for log in myLog %}
+      {{ log }}-
+      {% endfor %}<br>
 
       <div class="row">
       	<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
@@ -33,7 +35,7 @@
             {% else %}
       	      <div class="currentSize"></div>
       	    {% endif %}
-      	    <a href="{% url 'quiz_log' pk=step.step_of_quiz step=next log=1 %}"><!--!-->
+      	    <a href="{% url 'quiz_log' pk=step.step_of_quiz step=next log=answers.0.id %}"><!--!-->
       	      <button class="btn btn-default btn-block">{{ answers.0.answer_text }}</button>
       	    </a>
       	  </div>
@@ -45,7 +47,7 @@
       	    {% else %}
       	      <div class="currentSize"></div>
       	    {% endif %}
-      	    <a href="{% url 'quiz_log' pk=step.step_of_quiz step=next log=2 %}">
+      	    <a href="{% url 'quiz_log' pk=step.step_of_quiz step=next log=answers.1.id %}">
       		  <button class="btn btn-default btn-block">{{ answers.1.answer_text }}</button>
       	    </a>
       	  </div>
@@ -57,7 +59,7 @@
       	    {% else %}
       	      <div class="currentSize"></div>
       	    {% endif %}
-      	    <a href="{% url 'quiz_log' pk=step.step_of_quiz step=next log=3 %}">
+      	    <a href="{% url 'quiz_log' pk=step.step_of_quiz step=next log=answers.2.id %}">
       		  <button class="btn btn-default btn-block">{{ answers.2.answer_text }}</button>
       	    </a>
       	  </div>
@@ -69,13 +71,12 @@
       	    {% else %}
       	      <div class="currentSize"></div>
       	    {% endif %}
-      	    <a href="{% url 'quiz_log' pk=step.step_of_quiz step=next log=4 %}">
+      	    <a href="{% url 'quiz_log' pk=step.step_of_quiz step=next log=answers.3.id %}">
       		  <button class="btn btn-default btn-block">{{ answers.3.answer_text }}</button>
       	    </a>
       	  </div>
       	</div>
       </div>
-<a href="{% url 'step_of_quiz' pk=step.step_of_quiz step=next %}">next</a>
   	</div>
   </div>
 {% endblock content %}

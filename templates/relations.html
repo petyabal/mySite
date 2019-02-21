@@ -2,21 +2,29 @@
 	<div class="votingDiv">
 		{% if request.user.is_active %}			
 			{% if user_choise == 0 %}
-			<a href="{% url 'voting' pk=article.id note='+' %}"><button class="btn btn-default btn-lg"><b>ОЦЕНИТЬ ПОЛОЖИТЕЛЬНО</b></button></a>
+			<!--<a href="{% url 'voting' pk=article.id note='+' %}">-->
+				<button class="btn btn-default btn-lg" onclick="ILikeIt()"><b>ОЦЕНИТЬ ПОЛОЖИТЕЛЬНО</b></button>
+			<!--</a>-->
 			<a role="button" class="votingResultPositive">({{ positiveMarks }})</a>
-			<a href="{% url 'voting' pk=article.id note='-' %}"><button class="btn btn-default btn-lg"><b>ОЦЕНИТЬ ОТРИЦАТЕЛЬНО</b></button></a>
+			<!--<a href="{% url 'voting' pk=article.id note='-' %}">-->
+				<button class="btn btn-default btn-lg" onclick="IHateIt()"><b>ОЦЕНИТЬ ОТРИЦАТЕЛЬНО</b></button>
+			<!--</a>-->
 			<a role="button" class="votingResultNegative">({{ negativeMarks }})</a>
 			{% endif %}
 			{% if user_choise == 1 %}
-			<a href="{% url 'voting' pk=article.id note='+' %}"><button class="btn btn-default btn-lg" style="background-color: rgba(0,192,128,0.3);"><b>ОЦЕНИТЬ ПОЛОЖИТЕЛЬНО</b></button></a>
+			<!--<a href="{% url 'voting' pk=article.id note='+' %}">-->
+				<button class="btn btn-default btn-lg" onclick="ILikeIt()" style="background-color: rgba(0,192,128,0.3);"><b>ОЦЕНИТЬ ПОЛОЖИТЕЛЬНО</b></button>
+			<!--</a>-->
 			<a role="button" class="votingResultPositive">({{ positiveMarks }})</a>
-			<button class="btn btn-default btn-lg" style="color: gray;"><b>ОЦЕНИТЬ ОТРИЦАТЕЛЬНО</b></button>
+			<button class="btn btn-default btn-lg" onclick="Note()" style="color: gray;"><b>ОЦЕНИТЬ ОТРИЦАТЕЛЬНО</b></button>
 			<a role="button" class="votingResultNegative">({{ negativeMarks }})</a>
 			{% endif %}
 			{% if user_choise == 2 %}
-			<button class="btn btn-default btn-lg" style="color: gray"><b>ОЦЕНИТЬ ПОЛОЖИТЕЛЬНО</b></button>
+			<button class="btn btn-default btn-lg" onclick="Note()" style="color: gray"><b>ОЦЕНИТЬ ПОЛОЖИТЕЛЬНО</b></button>
 			<a role="button" class="votingResultPositive">({{ positiveMarks }})</a>
-			<a href="{% url 'voting' pk=article.id note='-' %}"><button class="btn btn-default btn-lg" style="background-color: rgba(255,0,0,0.3);"><b>ОЦЕНИТЬ ОТРИЦАТЕЛЬНО</b></button></a>
+			<!--<a href="{% url 'voting' pk=article.id note='-' %}">-->
+				<button class="btn btn-default btn-lg" onclick="IHateIt()" style="background-color: rgba(255,0,0,0.3);"><b>ОЦЕНИТЬ ОТРИЦАТЕЛЬНО</b></button>
+			<!--</a>-->
 			<a role="button" class="votingResultNegative">({{ negativeMarks }})</a>
 			{% endif %}
 		{% endif %}
@@ -43,4 +51,31 @@
 			<div class="voting">нет проголосовавших</div>
 		{% endif %}
 	</div>
+	<script type="text/javascript">
+		function ILikeIt() {
+			var xhr = new XMLHttpRequest();
+			xhr.open('GET', "{% url 'voting' pk=article.id note='+' %}", false);
+			xhr.send();
+			/*xhr.open('GET', "{% url 'selected_article' pk=article.id %}", false);
+			xhr.send();*/
+			location.reload();
+			if (xhr.status != 200) {
+				// обработать ошибку
+				alert( xhr.status + ': ' + xhr.statusText );
+				// пример вывода: 404: Not Found
+			}
+		}
+		function IHateIt() {
+			var xhr = new XMLHttpRequest();
+			xhr.open('GET', "{% url 'voting' pk=article.id note='-' %}", false)
+			xhr.send();
+			location.reload();
+			if (xhr.status != 200) {
+				alert(xhr.status + ': ' + xhr.statusText);
+			}
+		}
+		function Note() {
+			alert('Сперва нужно отменить предыдущий выбор повторным нажатием активной кнопки!');
+		}
+	</script>
 {% endblock relations %}
