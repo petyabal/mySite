@@ -38,6 +38,7 @@ class Step(models.Model): #класс шага
 	def __str__(self):
 		return '{}'.format(self.step_number)
 
+
 class Question(models.Model): #класс вопроса
 	class Meta():
 		db_table = 'Question'
@@ -49,10 +50,11 @@ class Question(models.Model): #класс вопроса
 		verbose_name='Шаг')
 	question_text = models.CharField('Вопрос', max_length=100)
 	question_image = models.ImageField('Изображение', upload_to='quiz', blank=True)
-	question_reference = models.TextField('Справка')
+	question_reference = models.TextField('Справка', blank=True)
 
 	def __str__(self):
 		return self.question_text
+
 
 class Answer(models.Model): #класс ответа
 	class Meta():
@@ -69,3 +71,19 @@ class Answer(models.Model): #класс ответа
 
 	def __str__(self):
 		return self.answer_text
+
+
+class ResultsTable(models.Model): #класс таблицы результатов
+	class Meta():
+		db_table = 'ResultsTable'
+		verbose_name = 'Таблица результатов'
+		verbose_name_plural = 'Таблица результатов'
+		ordering = ['-result_value']
+
+	result_of_quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE, verbose_name='Тестирование')
+	result_of_user = models.ForeignKey(User, on_delete=models.SET_NULL, verbose_name='Участник', null=True)
+	result_datetime = models.DateTimeField('Тестирование пройдено', auto_now_add=True)
+	result_value = models.FloatField('Результат (%)')
+
+	def __str__(self):
+		return str(self.result_of_quiz)

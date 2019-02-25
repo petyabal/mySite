@@ -10,6 +10,7 @@
 {% url 'vacation_schedule' as vacations %}
 {% url 'contacts' as contacts %}
 {% url 'achievements' as achievements %}
+
 {% url 'articles_list' as articles %}
 
 {% url 'exit_view' as exit %}
@@ -17,6 +18,8 @@
 {% url 'logout_view' as logout %}
 {% url 'register_view' as register %}
 {% url 'profile_view' as profile %}
+
+{% url 'quizzes_list' as qlist %}
 
 <div class="container">
   <nav class="navbar navbar-default">
@@ -44,6 +47,7 @@
             <li><a href="{{ dwaccount }}">Учет посуды в ресторане "Спасательный круг"</a></li>
             <li><a href="{{ wwii }}">Викторина "Своя игра" на тему "История второй мировой войны"</a></li>
             <li><a href="{{ vacations }}">Формирование и ведение графика отпусков сотрудников "Колэнерго"</a></li>
+            <li><a href="{{ qlist }}"><b>Приложение для онлайн-тестирований</b></a></li>
             <li role="separator" class="divider"></li>
             <li><a href="https://github.com/petyabal/mySite"><b>>> Ссылка на github.com с программным кодом веб-проекта <<</b></a></li>
             <li role="separator" class="divider"></li>

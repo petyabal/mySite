@@ -1,17 +1,42 @@
 {% extends 'base.html' %}
 {% block title %}Правила тестирования{% endblock title %}
 {% block content %}
-  <div class="container">
-  	<div class="contentField">
-  	  <div class="pageName"><h2>{{ quiz.quiz_title }}: правила онлайн-тестирования</h2></div>
-  	  <p>Нажимая кнопку "Начать онлайн-тестирование" вы обязуетесь:</p> 
+	<div class="container">
+		<div class="contentField">
+  			<div class="pageName"><h2>{{ quiz.quiz_title }}</h2></div>
+  			<div class="pageName"><h3>Таблица результатов онлайн-тестирования</h3></div>  			
+  			{% if not results %}
+  				<div style="color: maroon; text-align: center;">Данное тестирование еще никто не проходил!</div>
+  				<hr>
+  			{% else %}
+  				<table class="table">
+  					<tr>
+  						<td><b>Место</b></td>
+  						<td><b>Участник</b></td>
+  						<td><b>Результат получен</b></td>
+  						<td><b>Результат</b></td>
+  					</tr>
+  					{% for result in results %}
+  					<tr>
+  						<td>{{ forloop.counter }}</td>
+  						<td>{{ result.result_of_user }}</td>
+  						<td>{{ result.result_datetime }}</td>
+  						<td>{{ result.result_value }}</td>
+  					</tr>
+  					{% endfor %}
+  				</table><hr>
+  			{% endif %}
+  	  <div class="pageName"><h2>Правила онлайн-тестирования</h2></div>
+  	  <p>Нажимая кнопку "Начать онлайн-тестирование" <span style="color: maroon;">вы обязуетесь:</span></p> 
   	  <ul>
   	  	<li>отвечать на вопросы самостоятельно, без посторонней помощи, не обращаясь во время тестирования к справочным материалам;</li>
   	  	<li>не публиковать на сайте и сторонних ресурсах правильные ответы на вопросы теста;</li>
   	  	<li>при обнаружении неточности, не указывать на нее в комментариях (это будет рассматриваться как подсказка, и такие комментарии будут удаляться), а сообщить администрации сайта на форме обратной связи.</li>
   	  </ul>
-  	  <p>Желаем вам удачи и азарта при прохождении онлайн-тестирования</p>
-  	  <a href="{% url 'step_of_quiz' pk=quiz.quiz_url step=1 %}"><button class="btn btn-default">Начать онлайн-тестирование</button></a>
+  	  <div style="text-align: center;"><b>Желаем вам удачи и азарта при прохождении онлайн-тестирования</b><br>
+
+  	  	<a href="{% url 'step_of_quiz' pk=quiz.quiz_url step=1 %}"><button class="btn btn-default">Начать онлайн-тестирование</button></a>
+  	  </div>
   	</div>
   </div>
 {% endblock content %}

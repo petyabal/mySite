@@ -2,20 +2,71 @@
 {% block title %}Результат тестирования{% endblock title %}
 {% block content %}
 <div class="container">
-  <div class="contentField"><h1>GAME OVER</h1>
-
-    <div>Вопросы: {% for questionsLog in questions %}{{ questionsLog }}, {% endfor %}</div>
-    <hr>
-    {% for qSet in questionsSet %}
-    	<p>{{ qSet.question_text }}</p>
-    	{% for aSet in answersSet %}
-    		{% if aSet.answer_to_the_question.id == qSet.id %}
-    			{{ aSet.answer_text }}
-    		{% endif %}
-    	{% endfor %}
-    {% endfor %}
-    <hr>
-    <div>Ответы: {% for answersLog in answers %}{{ answersLog }}, {% endfor %}</div>
+	<div class="contentField">
+		<div class="quizTitle">{{ quiz.quiz_title }}</div>
+		<div class="pageName"><h2>Результат тестирования</h2></div>
+		<div class="quizStatus">Вы ответили верно на {{ text }} из {{ all_steps }}</div>
+		<div class="progress">
+  	  		<div class="progress-bar progress-bar-success" style="width: {{ quiz_result }}%">
+  	  			<span class="sr-only">{{ quiz_result }}% Complete</span>
+  	  		</div>
+  	  		<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuemin="0" area-valuemax="100" aria-valuenov="40" style="width: {{ negative }}%">
+  	  			<span class="sr-only">{{ negative }}% Complete</span>
+  	  		</div>
+		</div><hr>
+		{% if not allResults %}
+			<div style="color: maroon; text-align: center;">Данное тестирование еще никто не проходил</div>
+  		{% else %}
+			<div class="pageName"><h3>Таблица результатов</h3></div>
+			<table class="table">
+  				<tr>
+  					<td><b>Место</b></td>
+  					<td><b>Участник</b></td>
+  					<td><b>Результат получен</b></td>
+  					<td><b>Результат</b></td>
+  				</tr>
+  				{% for all_results in allResults %}
+  					{% if all_results.id == my_id %}
+	  					<tr class="warning">
+	  						<td>{{ forloop.counter }}</td>
+	  						<td>{{ all_results.result_of_user }}</td>
+	  						<td>{{ all_results.result_datetime }}</td>
+	  						<td>{{ all_results.result_value }}</td>
+	  					</tr>
+	  				{% else %}
+	  					<tr>
+	  						<td>{{ forloop.counter }}</td>
+	  						<td>{{ all_results.result_of_user }}</td>
+	  						<td>{{ all_results.result_datetime }}</td>
+	  						<td>{{ all_results.result_value }}</td>
+	  					</tr>
+	  				{% endif %}
+  				{% endfor %}
+  			</table>
+  		{% endif %}
+  		<hr>
+  		<div class="pageName"><h3>Список вопросов</h3></div>
+	    {% for qSet in questionsSet %}
+	    	<div>Вопрос №{{ forloop.counter }}: {{ qSet.question_text }}<br>
+	    	{% for aSet in answersSet %}
+	    		{% if aSet.answer_to_the_question.id == qSet.id %}
+	    			{% if aSet.id in answers %}
+	    				{% if aSet.answer_status == True %}
+	    					&emsp;<b><span class="correctAnswer">{{ aSet.answer_text }}</span></b><br>
+	    				{% else %}
+	    					&emsp;<b><span class="incorrectAnswer">{{ aSet.answer_text }}</span></b><br>
+	    				{% endif %}
+	    			{% else %}
+	    				&emsp;{{ aSet.answer_text }}<br>
+	    			{% endif %}
+	    		{% endif %}
+	    	{% endfor %}
+	    	{% if qSet.question_reference != "" %}
+	    		&emsp;Пояснение: {{ qSet.question_reference }}
+	    	{% endif %}
+	    	</div><br>
+	    {% endfor %}
+        <div style="text-align: center;"><a href="{% url 'quizzes_list' %}"><button class="btn btn-default">Вернуться к списку онлайн-тестирований</button></a></div>
    </div>
 </div>
 {% endblock content %}

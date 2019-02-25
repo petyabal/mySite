@@ -1,28 +1,39 @@
 {% extends 'base.html' %}
 {% block title %}Онлайн-тесты{% endblock title %}
 {% block content %}
-  <div class="container">
-  	<div class="contentField">
-  	  <div class="pageName"><h2>Доступные онлайн-тесты</h2></div>
-  	  {% if not user.is_active %}
-  		<div class='loginRequred'>
-  		  Для прохождения онлайн-тестов необходимо авторизоваться на сайте!
-  		</div><hr>
-  		{% for quiz in quizzes %}
-  		  <br>
-    	  <div class="articleTitle"><h2>{{ quiz.quiz_title }}</h2></div>
-    	  <div class="articlePreview">{{ quiz.quiz_description }}</div><hr>
-    	{% endfor %}
-      {% else %}<hr>
-        {% for quiz in quizzes %}
-    	  <div class="quizStatus">Вы еще не проходили этот онлайн-тест</div>
-    	  <div class="articleTitle"><h2>
-    	    <a href="{% url 'selected_quiz' pk=quiz.quiz_url %}">{{ quiz.quiz_title }}</a>
-    	  </h2></div>
-    	<div class="articlePreview">{{ quiz.quiz_description }}</div><hr>
-    	{% endfor %}
-	  {% endif %}
-	  {% if not quizzes %}<div class="noContent">Нет доступных онлоайн-тестов</div><hr>{% endif %}
+ 	<div class="container">
+  		<div class="contentField">
+  			<div class="pageName"><h2>Доступные онлайн-тесты</h2></div>
+  	  		{% if not user.is_active %}
+				<div class='loginRequred'>
+  					Для прохождения онлайн-тестов необходимо авторизоваться на сайте!
+				</div><hr>
+  				{% for quiz in quizzes %}
+  					<br>
+    				<div class="articleTitle"><h2>{{ quiz.quiz_title }}</h2></div>
+					<div class="articlePreview">{{ quiz.quiz_description }}</div><hr>
+				{% endfor %}
+    		{% else %}<hr>
+        		{% for quiz in quizzes %}
+        			{% if quiz.quiz_published %}
+        				<div class="quizStatus">Автор тестирования: {{ quiz.quiz_created_by }}</div>
+        				<!--{% if quiz.quiz_url in result.result_of_quiz.quiz_url %}
+							<div class="quizStatus">Вы проходили этот онлайн-тест</div>
+						{% else %}
+							<div class="quizStatus">Вы еще не проходили этот онлайн-тест</div>
+						{% endif %}-->
+					{% else %}
+						<div class="quizStatus" style="color: darkgray;">Доступно для прохождения в тестовом режиме</div>
+					{% endif %}
+					<div class="articleTitle"><h2>
+    	    			<a href="{% url 'selected_quiz' pk=quiz.quiz_url %}">{{ quiz.quiz_title }}</a>
+    				</h2></div>
+    				<div class="articlePreview">{{ quiz.quiz_description }}</div><hr>
+    			{% endfor %}
+	  		{% endif %}
+	  		<!--{{ quizzes.1.quiz_url }}
+	  		{{ results.0.result_of_quiz.quiz_url }}-->
+			{% if not quizzes %}<div class="noContent">Нет доступных онлайн-тестов</div><hr>{% endif %}
+		</div>
 	</div>
-  </div>
 {% endblock content %}

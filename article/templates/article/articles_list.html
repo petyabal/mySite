@@ -30,7 +30,7 @@
 	</div>
 	<hr>
 	{% if not articles %}
-	  <div class="noComments"><h3>Нет новостей!</h3></div>
+	  <div class="noComments"><h3>Нет новостей!</h3></div><hr>
 	{% endif %}
 	{% for article in articles %}
 	  <div class="articleInfo">{{ article.article_created }}</div><br>
