@@ -68,6 +68,15 @@
           </ul>
         </ul>
       </div>
+      <hr>
+      <div id="button" style="text-align: center;"><button class="btn btn-default" onclick="checkPassword()">Скачать резюме</button></div>
+      <div id="link" style="text-align: center; display: none;"><a href=""><h3>Резюме</h3></a></div>
     </div>
   </div>
+
+  <script type="text/javascript">
+    function checkPassword(){
+      prompt("Введите пароль:") == "abc" ? ($("#button").hide(), $("#link").show()) : alert('Неверный пароль!');
+    };
+  </script>
 {% endblock %}
