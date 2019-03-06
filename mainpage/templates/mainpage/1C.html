@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %}1C{% endblock %}
+{% block content %}
+	{% load static %}
+	<div class="container">
+		<div class="contentField">
+			<div class="programmName"><h2>Информационная база 1С: Предприятия</h2></div>
+			<div class="programmInfo">Конфигурация разработана по книге М. Г. Радченко, Е. Ю. Хрусталевой "1С:Предприятие 8.3. Практическое пособие разработчика. Примеры и типовые приемы".</div>
+			<div class="myLink"><a href="{% static 'myprogramms/1Cv8.dt' %}">Скачать информационную базу для 1C: Предприятие 8.3 можно по этой ссылке</a></div>
+			<hr>
+			<p><b>Системные требования:</b></p>
+			<p>определяются требованиями к ЭВМ, предъявляемыми платформой 1С: предприятие 8.3. Ознакомиться с этими требованиями можно на <a href="https://1c.ru/rus/products/1c/predpr/compat/hard/demand.htm">официальном сайте 1С</a>.</p>
+			<hr>
+			<p><b>Пароли учетных записей:</b></p>
+			<p>Конфигурация разработана на учебной версии 1С. Невозможность задавать пароли учетных записей пользователей является одним из ограничений учебной версии.</p>
+			{% block comments %}{% include 'comments.html' %}{% endblock comments %}
+		</div>
+	</div>
+{% endblock %}

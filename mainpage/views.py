@@ -191,6 +191,30 @@ def vacation_schedule(request):
 	return render(request, 'mainpage/vacation_schedule.html', {'form': form, 
 		'comments': comment, 'unmoderated': my_comment})
 
+#страница информационной базы 1C: Предприятие 8.3
+def my1C(request):
+	comment = ProComment.objects.filter(comment_programm='my1C', 
+		comment_moderation=True)
+	my_comment = None
+	if request.user.is_active:
+		my_comment = ProComment.objects.filter(
+			comment_programm='my1C',
+			comment_moderation=False,
+			comment_written_by=request.user)
+	if request.method == 'POST':
+		form = ProCommentForm(request.POST)
+		if form.is_valid():
+			form = form.save(commit=False)
+			form.comment_written_by = request.user
+			form.comment_programm = Programm.objects.get(
+				programm_title__exact='my1C')
+			form.save()
+			return redirect(my1C)
+	else:
+		form = ProCommentForm()
+	return render(request, 'mainpage/1C.html', {'form': form, 
+		'comments': comment, 'unmoderated': my_comment})
+
 #страница с контактными данными и формой обратной связи
 def contacts(request):
 	message = None
