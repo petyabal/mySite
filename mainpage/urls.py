@@ -11,6 +11,7 @@ urlpatterns = [
     path('world_war_ii/', views.world_war_ii, name='world_war_ii'),
     path('vacation_schedule/', views.vacation_schedule, name='vacation_schedule'),
     path('1C/', views.my1C, name='my1C'),
+    path('inventory_accounting/', views.inventory_accounting, name='inventory_accounting'),
     path('contacts/', views.contacts, name='contacts'),
     path('achievements/', views.achievements, name='achievements')
 ]

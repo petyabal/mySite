@@ -27,7 +27,7 @@ def main_page(request):
 	return render(request, 'mainpage/main_page.html', {'site_users': site_user, 
 		'audience': audience, 'admins': admin, 'adminsNumber': adminsNumber, 'results': result})
 
-def myViewMaker(request, name, html):
+'''def myViewMaker(request, name, html):
     comment = ProComment.objects.filter(comment_frogramm=name, 
     	comment_moderation=True)
     my_comment = None
@@ -45,7 +45,7 @@ def myViewMaker(request, name, html):
     		return redirect(view)
     else:
     	form = ProCommentForm()
-    return render(request, html, {'form': form, 'comments': comment, 'unmoderated': my_comment})
+    return render(request, html, {'form': form, 'comments': comment, 'unmoderated': my_comment})'''
 
 #страница "Своей игры" на английском языке на сайте
 def your_own_game(request):
@@ -191,7 +191,7 @@ def vacation_schedule(request):
 	return render(request, 'mainpage/vacation_schedule.html', {'form': form, 
 		'comments': comment, 'unmoderated': my_comment})
 
-#страница информационной базы 1C: Предприятие 8.3
+#страница информационных баз платформы 1C: Предприятие 8.3
 def my1C(request):
 	comment = ProComment.objects.filter(comment_programm='my1C', 
 		comment_moderation=True)
@@ -214,6 +214,30 @@ def my1C(request):
 		form = ProCommentForm()
 	return render(request, 'mainpage/1C.html', {'form': form, 
 		'comments': comment, 'unmoderated': my_comment})
+
+#страница программы учета материальных запасов "Норд Пилигрим"
+def inventory_accounting(request):
+	comment = ProComment.objects.filter(comment_programm='inventory_accounting', 
+		comment_moderation=True)
+	my_comment = None
+	if request.user.is_active:
+		my_comment = ProComment.objects.filter(
+			comment_programm='inventory_accounting',
+			comment_moderation=False,
+			comment_written_by=request.user)
+	if request.method == 'POST':
+		form = ProCommentForm(request.POST)
+		if form.is_valid():
+			form = form.save(commit=False)
+			form.comment_written_by = request.user
+			form.comment_programm = Programm.objects.get(
+				programm_title__exact='inventory_accounting')
+			form.save()
+			return redirect(inventory_accounting)
+	else:
+		form = ProCommentForm()
+	return render(request, 'mainpage/inventory_accounting.html', 
+		{'form': form, 'comments': comment, 'unmoderated': my_comment})
 
 #страница с контактными данными и формой обратной связи
 def contacts(request):
