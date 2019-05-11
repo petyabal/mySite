@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from .models import Message, Programm, ProComment
 from .forms import MessageForm, ProCommentForm
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 
 #Главная страница сайта
 def main_page(request):
@@ -49,14 +50,23 @@ def main_page(request):
 
 #страница "Своей игры" на английском языке на сайте
 def your_own_game(request):
+	programm = Programm.objects.get(programm_title='your_own_game')
+	positiveMarks = str(programm.programm_marked_positive_by.count())
+	negativeMarks = str(programm.programm_marked_negative_by.count())
 	comment = ProComment.objects.filter(comment_programm='your_own_game', 
 		comment_moderation=True)
 	my_comment = None
+	user_choise = 0
 	if request.user.is_active:
 		my_comment = ProComment.objects.filter(
 			comment_programm='your_own_game',
 			comment_moderation=False,
 			comment_written_by=request.user)
+		if request.user in programm.programm_marked_positive_by.all():
+			user_choise = 1
+		elif request.user in programm.programm_marked_negative_by.all():
+			user_choise = 2
+		else: user_choise = 0
 	if request.method == 'POST':
 		form = ProCommentForm(request.POST)
 		if form.is_valid():
@@ -68,19 +78,29 @@ def your_own_game(request):
 			return redirect(your_own_game)
 	else:
 		form = ProCommentForm()
-	return render(request, 'mainpage/your_own_game.html', {'form': form, 
-		'comments': comment, 'unmoderated': my_comment})
+	return render(request, 'mainpage/your_own_game.html', {'form': form, 'programm':
+		programm, 'positiveMarks': positiveMarks, 'negativeMarks': negativeMarks, 
+		'user_choise': user_choise,	'comments': comment, 'unmoderated': my_comment})
 
 #страница интерактивного кроссворда на сайте
 def interactive_crossword(request):
+	programm = Programm.objects.get(programm_title='interactive_crossword')
+	positiveMarks = str(programm.programm_marked_positive_by.count())
+	negativeMarks = str(programm.programm_marked_negative_by.count())
 	comment = ProComment.objects.filter(comment_programm='interactive_crossword', 
 		comment_moderation=True)
 	my_comment = None
+	user_choise = 0
 	if request.user.is_active:
 		my_comment = ProComment.objects.filter(
 			comment_programm='interactive_crossword',
 			comment_moderation=False,
 			comment_written_by=request.user)
+		if request.user in programm.programm_marked_positive_by.all():
+			user_choise = 1
+		elif request.user in programm.programm_marked_negative_by.all():
+			user_choise = 2
+		else: user_choise = 0
 	if request.method == 'POST':
 		form = ProCommentForm(request.POST)
 		if form.is_valid():
@@ -92,19 +112,29 @@ def interactive_crossword(request):
 			return redirect(interactive_crossword)
 	else:
 		form = ProCommentForm()
-	return render(request, 'mainpage/interactive_crossword.html', {'form': form, 
-		'comments': comment, 'unmoderated': my_comment})
+	return render(request, 'mainpage/interactive_crossword.html', {'form': form, 'programm': 
+		programm, 'positiveMarks': positiveMarks, 'negativeMarks': negativeMarks, 
+		'user_choise': user_choise,	'comments': comment, 'unmoderated': my_comment})
 
 #страница программы по оплате услуг мобильной связи на сайте
 def phone_payments(request):
+	programm = Programm.objects.get(programm_title='phone_payments')
+	positiveMarks = str(programm.programm_marked_positive_by.count())
+	negativeMarks = str(programm.programm_marked_negative_by.count())
 	comment = ProComment.objects.filter(comment_programm='phone_payments', 
 		comment_moderation=True)
 	my_comment = None
+	user_choise = 0
 	if request.user.is_active:
 		my_comment = ProComment.objects.filter(
 			comment_programm='phone_payments',
 			comment_moderation=False,
 			comment_written_by=request.user)
+		if request.user in programm.programm_marked_positive_by.all():
+			user_choise = 1
+		elif request.user in programm.programm_marked_negative_by.all():
+			user_choise = 2
+		else: user_choise = 0
 	if request.method == 'POST':
 		form = ProCommentForm(request.POST)
 		if form.is_valid():
@@ -116,19 +146,29 @@ def phone_payments(request):
 			return redirect(phone_payments)
 	else:
 		form = ProCommentForm()
-	return render(request, 'mainpage/phone_payments.html', {'form': form, 
-		'comments': comment, 'unmoderated': my_comment})
+	return render(request, 'mainpage/phone_payments.html', {'form': form, 'programm': 
+		programm, 'positiveMarks': positiveMarks, 'negativeMarks': negativeMarks, 
+		'user_choise': user_choise,	'comments': comment, 'unmoderated': my_comment})
 
 #страница программы учета посуды в ресторане "Спасательный круг" на сайте
 def dinnerware_accounting(request):
+	programm = Programm.objects.get(programm_title='dinnerware_accounting')
+	positiveMarks = str(programm.programm_marked_positive_by.count())
+	negativeMarks = str(programm.programm_marked_negative_by.count())
 	comment = ProComment.objects.filter(comment_programm='dinnerware_accounting', 
 		comment_moderation=True)
 	my_comment = None
+	user_choise = 0
 	if request.user.is_active:
 		my_comment = ProComment.objects.filter(
 			comment_programm='dinnerware_accounting',
 			comment_moderation=False,
 			comment_written_by=request.user)
+		if request.user in programm.programm_marked_positive_by.all():
+			user_choise = 1
+		elif request.user in programm.programm_marked_negative_by.all():
+			user_choise = 2
+		else: user_choise = 0
 	if request.method == 'POST':
 		form = ProCommentForm(request.POST)
 		if form.is_valid():
@@ -140,19 +180,29 @@ def dinnerware_accounting(request):
 			return redirect(dinnerware_accounting)
 	else:
 		form = ProCommentForm()
-	return render(request, 'mainpage/dinnerware_accounting.html', {'form': form, 
-		'comments': comment, 'unmoderated': my_comment})
+	return render(request, 'mainpage/dinnerware_accounting.html', {'form': form, 'programm': 
+		programm, 'positiveMarks': positiveMarks, 'negativeMarks': negativeMarks, 
+		'user_choise': user_choise, 'comments': comment, 'unmoderated': my_comment})
 
 #страница "Своей игры" на тему "История Второй мировой войны" на сайте
 def world_war_ii(request):
+	programm = Programm.objects.get(programm_title='world_war_ii')
+	positiveMarks = str(programm.programm_marked_positive_by.count())
+	negativeMarks = str(programm.programm_marked_negative_by.count())
 	comment = ProComment.objects.filter(comment_programm='world_war_ii', 
 		comment_moderation=True)
 	my_comment = None
+	user_choise = 0
 	if request.user.is_active:
 		my_comment = ProComment.objects.filter(
 			comment_programm='world_war_ii',
 			comment_moderation=False,
 			comment_written_by=request.user)
+		if request.user in programm.programm_marked_positive_by.all():
+			user_choise = 1
+		elif request.user in programm.programm_marked_negative_by.all():
+			user_choise = 2
+		else: user_choise = 0
 	if request.method == 'POST':
 		form = ProCommentForm(request.POST)
 		if form.is_valid():
@@ -164,19 +214,29 @@ def world_war_ii(request):
 			return redirect(world_war_ii)
 	else:
 		form = ProCommentForm()
-	return render(request, 'mainpage/world_war_ii.html', {'form': form, 
-		'comments': comment, 'unmoderated': my_comment})
+	return render(request, 'mainpage/world_war_ii.html', {'form': form, 'programm': 
+		programm, 'positiveMarks': positiveMarks, 'negativeMarks': negativeMarks, 
+		'user_choise': user_choise,	'comments': comment, 'unmoderated': my_comment})
 
 #страница программы для формирования и ведения графика отпусков в Колэнерго
 def vacation_schedule(request):
+	programm = Programm.objects.get(programm_title='vacation_schedule')
+	positiveMarks = str(programm.programm_marked_positive_by.count())
+	negativeMarks = str(programm.programm_marked_negative_by.count())
 	comment = ProComment.objects.filter(comment_programm='vacation_schedule', 
 		comment_moderation=True)
 	my_comment = None
+	user_choise = 0
 	if request.user.is_active:
 		my_comment = ProComment.objects.filter(
 			comment_programm='vacation_schedule',
 			comment_moderation=False,
 			comment_written_by=request.user)
+		if request.user in programm.programm_marked_positive_by.all():
+			user_choise = 1
+		elif request.user in programm.programm_marked_negative_by.all():
+			user_choise = 2
+		else: user_choise = 0
 	if request.method == 'POST':
 		form = ProCommentForm(request.POST)
 		if form.is_valid():
@@ -188,19 +248,29 @@ def vacation_schedule(request):
 			return redirect(vacation_schedule)
 	else:
 		form = ProCommentForm()
-	return render(request, 'mainpage/vacation_schedule.html', {'form': form, 
-		'comments': comment, 'unmoderated': my_comment})
+	return render(request, 'mainpage/vacation_schedule.html', {'form': form, 'programm': 
+		programm, 'positiveMarks': positiveMarks, 'negativeMarks': negativeMarks, 
+		'user_choise': user_choise,	'comments': comment, 'unmoderated': my_comment})
 
 #страница информационных баз платформы 1C: Предприятие 8.3
 def my1C(request):
+	programm = Programm.objects.get(programm_title='my1C')
+	positiveMarks = str(programm.programm_marked_positive_by.count())
+	negativeMarks = str(programm.programm_marked_negative_by.count())
 	comment = ProComment.objects.filter(comment_programm='my1C', 
 		comment_moderation=True)
 	my_comment = None
+	user_choise = 0
 	if request.user.is_active:
 		my_comment = ProComment.objects.filter(
 			comment_programm='my1C',
 			comment_moderation=False,
 			comment_written_by=request.user)
+		if request.user in programm.programm_marked_positive_by.all():
+			user_choise = 1
+		elif request.user in programm.programm_marked_negative_by.all():
+			user_choise = 2
+		else: user_choise = 0
 	if request.method == 'POST':
 		form = ProCommentForm(request.POST)
 		if form.is_valid():
@@ -212,19 +282,29 @@ def my1C(request):
 			return redirect(my1C)
 	else:
 		form = ProCommentForm()
-	return render(request, 'mainpage/1C.html', {'form': form, 
-		'comments': comment, 'unmoderated': my_comment})
+	return render(request, 'mainpage/1C.html', {'form': form, 'programm': programm,
+		'positiveMarks': positiveMarks, 'negativeMarks': negativeMarks, 
+		'user_choise': user_choise,	'comments': comment, 'unmoderated': my_comment})
 
 #страница программы учета материальных запасов "Норд Пилигрим"
 def inventory_accounting(request):
+	programm = Programm.objects.get(programm_title='inventory_accounting')
+	positiveMarks = str(programm.programm_marked_positive_by.count())
+	negativeMarks = str(programm.programm_marked_negative_by.count())
 	comment = ProComment.objects.filter(comment_programm='inventory_accounting', 
 		comment_moderation=True)
 	my_comment = None
+	user_choise = 0
 	if request.user.is_active:
 		my_comment = ProComment.objects.filter(
 			comment_programm='inventory_accounting',
 			comment_moderation=False,
 			comment_written_by=request.user)
+		if request.user in programm.programm_marked_positive_by.all():
+			user_choise = 1
+		elif request.user in programm.programm_marked_negative_by.all():
+			user_choise = 2
+		else: user_choise = 0
 	if request.method == 'POST':
 		form = ProCommentForm(request.POST)
 		if form.is_valid():
@@ -237,7 +317,8 @@ def inventory_accounting(request):
 	else:
 		form = ProCommentForm()
 	return render(request, 'mainpage/inventory_accounting.html', 
-		{'form': form, 'comments': comment, 'unmoderated': my_comment})
+		{'form': form, 'programm': programm, 'positiveMarks': positiveMarks, 'negativeMarks': 
+		negativeMarks, 'user_choise': user_choise, 'comments': comment, 'unmoderated': my_comment})
 
 #страница с контактными данными и формой обратной связи
 def contacts(request):
@@ -259,3 +340,42 @@ def contacts(request):
 #страница с указанием достижений
 def achievements(request):
 	return render(request, 'mainpage/achievements.html', {})
+
+@login_required
+def voting_for_programm(request, pk, note):
+	programm = Programm.objects.get(programm_title=pk)
+	if (note == "+") and (request.user not in programm.programm_marked_positive_by.all()) and (
+	request.user not in programm.programm_marked_negative_by.all()):
+		programm_marked_positive_by = programm.programm_marked_positive_by.add(request.user)
+		programm.save()
+	elif (note == "+") and (request.user in programm.programm_marked_positive_by.all()) and (
+	request.user not in programm.programm_marked_negative_by.all()):
+		programm_marked_positive_by = programm.programm_marked_positive_by.remove(request.user)
+		programm.save()
+	elif (note == "-") and (request.user not in programm.programm_marked_negative_by.all()) and ( 
+	request.user not in programm.programm_marked_positive_by.all()):
+		programm_marked_negative_by = programm.programm_marked_negative_by.add(request.user)
+		programm.save()
+	elif (note == "-") and (request.user in programm.programm_marked_negative_by.all()) and ( 
+	request.user not in programm.programm_marked_positive_by.all()):
+		programm_marked_negative_by = programm.programm_marked_negative_by.remove(request.user)
+		programm.save()
+	else: pass
+	if pk == 'your_own_game':
+		return redirect(your_own_game)
+	elif pk == 'interactive_crossword':
+		return redirect(interactive_crossword)
+	elif pk == 'phone_payments':
+		return redirect(phone_payments)
+	elif pk == 'dinnerware_accounting':
+		return redirect(dinnerware_accounting)
+	elif pk == 'world_war_ii':
+		return redirect(world_war_ii)
+	elif pk == 'vacation_schedule':
+		return redirect(vacation_schedule)
+	elif pk == 'my1C':
+		return redirect(my1C)
+	elif pk == 'inventory_accounting':
+		return redirect(inventory_accounting)
+	else:
+		return redirect(main_page)

@@ -7,6 +7,7 @@
   	<div class="programmName"><h2>Приложение для учета посуды в ресторане "Спасательный круг"</h2></div>
   	<div class="programmInfo">Программный продукт разрабатывался в среде Delphi 7 (язык Object Pascal), с использованием технологии локальных баз данных в декабре 2017 года в рамках производственной практики с использованием технологии баз данных как оновного средства хранения информации. Для реализации задачи выла выбрана СУБД Microsoft Access 2010. Для хранения базы были выбраны файлы формата accdb.</div>
     <div class="myLink"><a href="{% static 'myprogramms/Dinnerware_accounting.zip' %}">Скачать программный продукт можно по этой ссылке</a></div>
+    {% block programm_relations %}{% include 'programm_relations.html' %}{% endblock programm_relations %}
     <hr>
     <p><b>Системные требования:</b></p>
   	<p><ul><li>ОС линейки Windows;</li><li>наличие предустановленной СУБД Microsoft Access.</li></ul></p><p>Работоспособность приложения проверялась на Windows 7.</p>

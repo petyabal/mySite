@@ -7,6 +7,7 @@
   	<div class="programmName"><h2>Викторина "Своя игра" на английском языке</h2></div>
   	<div class="programmInfo">Викторина разрабабатывалась в качестве самостоятельного задания в рамках учебного процесса по предметам английский язык и программирование. Создание программного продука велось в среде разработки Delphi 7 (язык ObjectPascal) в декабре 2016 года.</div>
     <div class="myLink"><a href="{% static 'myprogramms/Project1.exe' %}">Скачать программный продукт можно по этой ссылке</a></div>
+    {% block programm_relations %}{% include 'programm_relations.html' %}{% endblock programm_relations %}
     <hr>
     <p><b>Системные требования:</b></button></p>
     <p><ul><li>ОС линейки Windows.</li></ul></p><p>Работоспособность приложения проверялась на Windows 7, Windows 8.1.</p>

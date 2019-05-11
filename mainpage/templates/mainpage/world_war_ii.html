@@ -7,6 +7,7 @@
   	<div class="programmName"><h2>Викторина "Своя игра" на тему "История второй мировой войны"</h2></div>
   	<div class="programmInfo">Викторина разрабабатывалась в рамках учебного проекта по освоению все еще специальности "оператор ПК";). Не того ПК, который можно найти на картинках по запросу "уверенный пользователь пк" в google). Разработка викторины велась в среде Microsoft Visual Studio 2010 Express на языке C# в марте 2018 года.</div>
     <div class="myLink"><a href="{% static 'myprogramms/WWII.exe' %}">Скачать программный продукт можно по этой ссылке</a></div>
+    {% block programm_relations %}{% include 'programm_relations.html' %}{% endblock programm_relations %}
     <hr>
     <p><b>Системные требования:</b></p>
   	<p><ul><li>ОС линейки Windows;</li><li>наличие предустановленного пакета Mickrosoft .NET Framework 4.</li></ul></p><p>Скачать .NET Framework 4 можно с <a href="https://www.microsoft.com/ru-ru/download/details.aspx?id=17718">официального сайта Microsoft</a>. Работоспособность приложения проверялась на Windows 7 и Windows 8.1.</p>

@@ -7,6 +7,7 @@
   	<div class="programmName"><h2>Интерактивный кроссворд на английском языке</h2></div>
   	<div class="programmInfo">Интерактивный кроссворд разрабатывался в рамках учебного процесса по предметам программировагние и английский язык. Разработка велась в среде Delphi 7 (язык Object Pascal) в марте 2017 года.</div>
 	<div class="myLink"><a href="{% static 'myprogramms/Crossword.zip' %}">Скачать программный продукт можно по этой ссылке</a></div>
+	{% block programm_relations %}{% include 'programm_relations.html' %}{% endblock programm_relations %}
 	<hr>
 	<p><b>Системные требования:</b></p>
     <p><ul><li>ОС линейки Windows.</li></ul></p><p>Работоспособность приложения проверялась на Windows 7.</p>

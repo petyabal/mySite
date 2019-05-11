@@ -11,6 +11,11 @@ class Programm(models.Model): #класс программы
 
 	programm_title = models.CharField('Название программы', max_length=80, primary_key=True)
 
+	programm_marked_positive_by = models.ManyToManyField(User, 
+		related_name='programm_marked_positive_by', verbose_name='Оценили положительно', blank=True)
+	programm_marked_negative_by = models.ManyToManyField(User,
+		related_name='programm_marked_negative_by', verbose_name='Оценили отрицательно', blank=True)
+
 	def __str__(self):
 		return self.programm_title
 '''

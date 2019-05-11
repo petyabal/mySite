@@ -13,5 +13,6 @@ urlpatterns = [
     path('1C/', views.my1C, name='my1C'),
     path('inventory_accounting/', views.inventory_accounting, name='inventory_accounting'),
     path('contacts/', views.contacts, name='contacts'),
-    path('achievements/', views.achievements, name='achievements')
+    path('achievements/', views.achievements, name='achievements'),
+    path('<pk>/<note>', views.voting_for_programm, name='voting_for_programm')
 ]
